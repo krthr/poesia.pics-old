@@ -8,6 +8,8 @@ interface Result {
 
 export const useAppStore = defineStore("app", () => {
   const config = useRuntimeConfig();
+  const route = useRoute();
+
   const loading = ref(false);
   const result = reactive<Result>({ poem: "", preview: "", labels: [] });
 
@@ -24,7 +26,14 @@ export const useAppStore = defineStore("app", () => {
     let json;
 
     try {
-      const response = await fetch(config.public.apiBase + "/poems", {
+      const erotic = route.query.erotic;
+      const url = new URL(config.public.apiBase + "/poems");
+
+      if (erotic) {
+        url.searchParams.append("erotic", "true");
+      }
+
+      const response = await fetch(url.toString(), {
         method: "post",
         body: form,
       });

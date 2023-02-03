@@ -28,11 +28,12 @@
         </button>
 
         <input
+          id="file"
           type="file"
           accept="image/jpg,image/png,image/webp,image/jpeg"
           hidden
-          ref="fileInput"
-          @change="onFileChange"
+          @click="onInputClick"
+          @change="onFileChanged($event)"
         />
       </div>
     </div>
@@ -43,17 +44,23 @@
 import { useAppStore } from "@/stores/appStore";
 
 const appStore = useAppStore();
-const fileInput = ref<HTMLInputElement>();
 
 function selectFile() {
-  fileInput.value!.click();
+  const input = document.querySelector<HTMLInputElement>("#file")!;
+  input.click();
 }
 
-async function onFileChange() {
-  if (!fileInput.value?.files?.length) {
-    return;
+function onInputClick(event: any) {
+  event.target.value = null;
+}
+
+async function onFileChanged($event: Event) {
+  const target = $event.target as HTMLInputElement;
+
+  if (target && target.files) {
+    await appStore.generatePoem(target.files[0]);
   }
 
-  await appStore.generatePoem(fileInput.value.files[0]);
+  return false;
 }
 </script>
