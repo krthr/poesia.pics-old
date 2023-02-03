@@ -8,19 +8,17 @@ specifiers:
   daisyui: ^2.50.0
   nuxt: ^3.1.1
   pinia: ^2.0.30
-  vue-gtag-next: ^1.14.0
 
 dependencies:
-  '@jamescoyle/vue-icon': 0.1.2
-  '@mdi/js': 7.1.96
   '@pinia/nuxt': 0.4.6
   pinia: 2.0.30
 
 devDependencies:
+  '@jamescoyle/vue-icon': 0.1.2
+  '@mdi/js': 7.1.96
   '@nuxtjs/tailwindcss': 6.3.1
   daisyui: 2.50.0
   nuxt: 3.1.1
-  vue-gtag-next: 1.14.0
 
 packages:
 
@@ -752,7 +750,7 @@ packages:
 
   /@jamescoyle/vue-icon/0.1.2:
     resolution: {integrity: sha512-KFrImXx5TKIi6iQXlnyLEBl4rNosNKbTeRnr70ucTdUaciVmd9qK9d/pZAaKt1Ob/8xNnX2GMp8LisyHdKtEgw==}
-    dev: false
+    dev: true
 
   /@jridgewell/gen-mapping/0.1.1:
     resolution: {integrity: sha512-sQXCasFk+U8lWYEe66WxRDOE9PjVz4vSM51fTu3Hw+ClTpUSQb718772vH3pyS5pShp6lvQM7SxgIDXXXmOX7w==}
@@ -826,7 +824,7 @@ packages:
 
   /@mdi/js/7.1.96:
     resolution: {integrity: sha512-wlrJs6Ryhaa5CqhK3FjTfMRnb/s7HeLkKMFqwQySkK86cdN1TGdzpSM3O4tsmzCA1dYBeTbXvOwSE/Y42cUrvA==}
-    dev: false
+    dev: true
 
   /@netlify/functions/1.4.0:
     resolution: {integrity: sha512-gy7ULTIRroc2/jyFVGx1djCmmBMVisIwrvkqggq5B6iDcInRSy2Tpkm+V5C63hKJVkNRskKWtLQKm9ecCaQTjA==}
@@ -5480,12 +5478,6 @@ packages:
 
   /vue-devtools-stub/0.1.0:
     resolution: {integrity: sha512-RutnB7X8c5hjq39NceArgXg28WZtZpGc3+J16ljMiYnFhKvd8hITxSWQSQ5bvldxMDU6gG5mkxl1MTQLXckVSQ==}
-    dev: true
-
-  /vue-gtag-next/1.14.0:
-    resolution: {integrity: sha512-iJl+cOG2GU5NuxqzSSIpt03WVOvZqyKB9TOy7d55KiuvRklcnb2nlqxW5B/a3/sbIt7fla+XEkRyMCcoz0zAHw==}
-    peerDependencies:
-      vue: ^3.0.0-rc.11
     dev: true
 
   /vue-router/4.1.6_vue@3.2.47:
