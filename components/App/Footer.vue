@@ -1,0 +1,67 @@
+<template>
+  <footer
+    class="footer footer-center p-8 pb-6 bg-primary text-primary-content bottom-0"
+  >
+    <div>
+      <!-- <SvgIcon
+        class="w-10 h-10 text-red-800"
+        :path="mdiNotebookHeart"
+        type="mdi"
+      /> -->
+
+      <p class="font-bold inline-flex items-center">
+        Hecho con
+        <SvgIcon
+          class="w-4 h-4 text-red-700 mx-1"
+          :path="mdiHeart"
+          type="mdi"
+        />
+        por Wilson Tovar
+      </p>
+      <p>Copyright © 2023 - All right reserved</p>
+    </div>
+    <div>
+      <div class="grid grid-flow-col gap-4">
+        <a
+          v-for="link in socialLinks"
+          :key="link.href"
+          :href="link.href"
+          target="_blank"
+        >
+          <SvgIcon :path="link.icon" type="mdi" />
+        </a>
+      </div>
+    </div>
+  </footer>
+</template>
+
+<script lang="ts" setup>
+import SvgIcon from "@jamescoyle/vue-icon";
+import {
+  mdiInstagram,
+  mdiTwitter,
+  mdiGithub,
+  mdiLinkedin,
+  mdiNotebookHeart,
+  mdiHeart,
+} from "@mdi/js";
+
+const socialLinks = [
+  {
+    icon: mdiInstagram,
+    href: "https://instagram.com/wilson__tovar",
+  },
+  {
+    icon: mdiGithub,
+    href: "https://github.com/krthr",
+  },
+  {
+    icon: mdiTwitter,
+    href: "https://twitter.com/_krthr",
+  },
+  {
+    icon: mdiLinkedin,
+    href: "https://linkedin.com/in/wilsontovar",
+  },
+];
+</script>
