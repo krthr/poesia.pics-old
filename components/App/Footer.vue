@@ -43,7 +43,6 @@ import {
   mdiTwitter,
   mdiGithub,
   mdiLinkedin,
-  mdiNotebookHeart,
   mdiHeart,
 } from "@mdi/js";
 
