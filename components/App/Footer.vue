@@ -26,6 +26,7 @@
           v-for="link in socialLinks"
           :key="link.href"
           :href="link.href"
+          :aria-label="link.label"
           target="_blank"
         >
           <SvgIcon :path="link.icon" type="mdi" />
@@ -48,18 +49,22 @@ import {
 
 const socialLinks = [
   {
+    label: "Instagram de Wilson",
     icon: mdiInstagram,
     href: "https://instagram.com/wilson__tovar",
   },
   {
+    label: "GitHub de Wilson",
     icon: mdiGithub,
     href: "https://github.com/krthr",
   },
   {
+    label: "Twitter de Wilson",
     icon: mdiTwitter,
     href: "https://twitter.com/_krthr",
   },
   {
+    label: "LinkedIn de Wilson",
     icon: mdiLinkedin,
     href: "https://linkedin.com/in/wilsontovar",
   },
