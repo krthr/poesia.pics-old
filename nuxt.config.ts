@@ -14,4 +14,10 @@ export default defineNuxtConfig({
   },
 
   modules: ["@nuxtjs/tailwindcss"],
+
+  runtimeConfig: {
+    public: {
+      apiBase: "/",
+    },
+  },
 });
