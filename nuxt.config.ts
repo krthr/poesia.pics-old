@@ -46,4 +46,16 @@ export default defineNuxtConfig({
       apiBase: "/",
     },
   },
+
+  // @ts-ignore
+  pwa: {
+    manifest: {
+      name: "FotoPoema",
+      short_name: "FotoPoema",
+      description:
+        "Convierte tus fotografías en poemas usando Google Cloud Vision + GPT-3",
+      theme_color: "#dd2d44",
+      lang: "es",
+    },
+  },
 });
