@@ -6,6 +6,11 @@ interface Result {
   labels: string[];
 }
 
+const Modes: Record<string, "erotic" | "romantic"> = {
+  erotic: "erotic",
+  romantic: "romantic",
+};
+
 export const useAppStore = defineStore("app", () => {
   const config = useRuntimeConfig();
   const route = useRoute();
@@ -26,11 +31,12 @@ export const useAppStore = defineStore("app", () => {
     let json;
 
     try {
-      const erotic = route.query.erotic;
+      const _mode = route.query.mode;
       const url = new URL(config.public.apiBase + "/poems");
 
-      if (erotic) {
-        url.searchParams.append("erotic", "true");
+      if (typeof _mode === "string") {
+        const mode = Modes[_mode];
+        url.searchParams.append("mode", mode);
       }
 
       const response = await fetch(url.toString(), {
