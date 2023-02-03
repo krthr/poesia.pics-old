@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full min-h-screen flex flex-col items-center">
+  <div class="w-full min-h-screen flex flex-col">
     <AppHero />
 
     <AppPoem v-if="appStore.result.poem" />

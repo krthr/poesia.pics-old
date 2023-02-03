@@ -1,5 +1,5 @@
 <template>
-  <div class="hero pt-10 min-h-full flex-1">
+  <div class="flex hero pt-5 md:pt-10 flex-1 justify-center">
     <div class="hero-content text-center">
       <div class="max-w-md">
         <h1 class="text-5xl font-bold">FotoPoema</h1>
@@ -32,7 +32,6 @@
           accept="image/jpg,image/png,image/webp,image/jpeg"
           hidden
           ref="fileInput"
-          capture="environment"
           @change="onFileChange"
         />
       </div>
