@@ -12,11 +12,13 @@
     "@kevinmarrec/nuxt-pwa": "^0.15.0",
     "@mdi/js": "^7.1.96",
     "@nuxtjs/tailwindcss": "^6.3.1",
+    "@types/node": "^18.11.18",
     "daisyui": "^2.50.0",
     "nuxt": "^3.1.1"
   },
   "dependencies": {
     "@pinia/nuxt": "^0.4.6",
+    "html2canvas": "^1.4.1",
     "pinia": "^2.0.30"
   }
 }
