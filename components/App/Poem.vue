@@ -13,7 +13,7 @@
 
       <p
         v-if="appStore.result.metadata.keywords.length"
-        class="text-sm mt-3 font-serif font-light"
+        class="text-sm mt-3 font-serif font-light italic"
       >
         {{ appStore.result.metadata.keywords.join(", ") }}
       </p>
@@ -22,7 +22,7 @@
         {{ appStore.result.poem }}
       </p>
 
-      <p class="text-sm font-serif inline-flex items-center">
+      <p class="text-sm font-serif inline-flex items-center italic">
         <SvgIcon :path="mdiRobotLoveOutline" type="mdi" class="w-4 h-4" />
         <span class="ml-2">poesía.pics</span>
         <span v-if="appStore.result.generatedAt" class="mx-2 font-bold text-lg">⋅</span>
