@@ -2,7 +2,7 @@
   <div class="w-full min-h-screen flex flex-col">
     <AppHero />
 
-    <AppPoem v-if="appStore.result.poem" />
+    <LazyAppPoem v-if="appStore.result.poem" />
 
     <AppFooter />
   </div>
