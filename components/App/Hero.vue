@@ -2,7 +2,12 @@
   <div class="flex hero pt-5 md:pt-10 flex-1 justify-center">
     <div class="hero-content text-center">
       <div class="max-w-md">
-        <h1 class="text-5xl font-bold">FotoPoema</h1>
+        <h1 class="text-5xl font-bold">
+          <span class="font-serif inline-flex">
+            poes <span class="italic">í</span> a.
+          </span>
+          <span class="font-light text-lg">pics</span>
+        </h1>
         <p class="py-6">
           Convierte tus fotografías en poemas usando Google Cloud Vision +
           GPT-3. ¡Es gratis y

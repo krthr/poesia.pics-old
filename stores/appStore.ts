@@ -7,6 +7,7 @@ interface Result {
   };
   author: string;
   preview: string;
+  generatedAt?: string;
 }
 
 const Modes: Record<string, "erotic" | "romantic"> = {
@@ -66,6 +67,12 @@ export const useAppStore = defineStore("app", () => {
         }
       }
 
+      const now = new Date();
+      const generatedAt = `${now.getDate().toString().padStart(2, "0")}/${now
+        .getMonth()
+        .toString()
+        .padStart(2, "0")}/${now.getFullYear()}`;
+
       Object.assign(result, {
         poem: json.poem,
         metadata: {
@@ -73,7 +80,8 @@ export const useAppStore = defineStore("app", () => {
         },
         author: json.author,
         preview: URL.createObjectURL(file),
-      });
+        generatedAt,
+      } as Result);
     } catch (error: any) {
       console.error({ error });
 

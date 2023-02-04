@@ -12,7 +12,7 @@ gtag('config', 'G-K40DJ3THNZ');
 export default defineNuxtConfig({
   app: {
     head: {
-      title: "FotoPoema - Una foto, un poema",
+      title: "poesía.pics - Una foto, un poema",
 
       meta: [
         {
@@ -59,8 +59,8 @@ export default defineNuxtConfig({
   // @ts-ignore
   pwa: {
     manifest: {
-      name: "FotoPoema",
-      short_name: "FotoPoema",
+      name: "poesía.pics",
+      short_name: "poesía.pics",
       description:
         "Convierte tus fotografías en poemas usando Google Cloud Vision + GPT-3",
       theme_color: "#dd2d44",

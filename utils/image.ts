@@ -33,7 +33,7 @@ export async function generateAndDownloadImage(
       try {
         await navigator.share({
           files,
-          title: "FotoPoema",
+          title: "poesía.pics",
           text: poem,
         });
 
