@@ -6,8 +6,7 @@ export async function generateAndDownloadImage(
 ) {
   const device = useDevice();
 
-  console.log({ isSafari: device.isSafari });
-  if (device.isSafari) {
+  if (device.isSafari || device.isIos || device.isMacOS) {
     // https://github.com/bubkoo/html-to-image/issues/361#issuecomment-1402537176
     await toBlob(node);
     await toBlob(node);
