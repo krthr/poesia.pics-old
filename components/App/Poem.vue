@@ -2,9 +2,9 @@
   <div class="divider"></div>
 
   <div
-    class="flex flex-col justify-center items-center max-w-md mx-auto pb-10 pt-4 px-4 md:px-1"
+    class="flex flex-col justify-center items-center max-w-md mx-auto pb-10 pt-4 md:px-1"
   >
-    <div class="w-full">
+    <div id="poem" class="w-full p-3">
       <img
         class="w-full rounded-md aspect-square object-cover"
         :alt="appStore.result.poem"
@@ -13,18 +13,53 @@
 
       <p
         v-if="appStore.result.metadata.keywords.length"
-        class="text-sm mt-3 mb-5 font-serif font-light"
+        class="text-sm mt-3 font-serif font-light"
       >
         {{ appStore.result.metadata.keywords.join(", ") }}
       </p>
 
-      <p class="whitespace-pre-wrap font-serif">{{ appStore.result.poem }}</p>
+      <p class="whitespace-pre-wrap font-serif my-5">
+        {{ appStore.result.poem }}
+      </p>
+
+      <p class="text-xs font-serif">FotoPoema.vercel.app</p>
+    </div>
+
+    <div class="mt-10 text-center w-full">
+      <button
+        :class="{
+          'btn btn-sm btn-ghost btn-outline gap-2': true,
+          loading: downloading,
+        }"
+        :disabled="downloading"
+        @click="downloadImage()"
+      >
+        <SvgIcon :path="mdiDownload" type="mdi" class="w-4 h-4" />
+        <span>Descargar imagen</span>
+      </button>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
+import SvgIcon from "@jamescoyle/vue-icon";
+import { mdiDownload } from "@mdi/js";
 import { useAppStore } from "@/stores/appStore";
 
 const appStore = useAppStore();
+const downloading = ref(false);
+
+async function downloadImage() {
+  downloading.value = true;
+
+  try {
+    const { generateAndDownloadImage } = await import("@/utils/image");
+    const element = document.querySelector("#poem")! as HTMLElement;
+    await generateAndDownloadImage(element, appStore.result.poem);
+  } catch (error) {
+    console.error(error);
+  }
+
+  downloading.value = false;
+}
 </script>
