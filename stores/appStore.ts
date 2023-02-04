@@ -1,8 +1,19 @@
 import { defineStore } from "pinia";
 
+export interface Color {
+  color: {
+    blue: number;
+    green: number;
+    red: number;
+  };
+  pixelFraction: number;
+  score: number;
+}
+
 interface Result {
   poem: string;
   metadata: {
+    colors: Color[];
     keywords: string[];
   };
   author: string;
@@ -19,6 +30,7 @@ const defaultResultState: Result = {
   poem: "",
   preview: "",
   metadata: {
+    colors: [],
     keywords: [],
   },
   author: "",
@@ -76,6 +88,7 @@ export const useAppStore = defineStore("app", () => {
       Object.assign(result, {
         poem: json.poem,
         metadata: {
+          colors: json.metadata.colors,
           keywords: json.metadata.keywords,
         },
         author: json.author,
