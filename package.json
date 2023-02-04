@@ -9,6 +9,7 @@
   },
   "devDependencies": {
     "@jamescoyle/vue-icon": "^0.1.2",
+    "@kevinmarrec/nuxt-pwa": "^0.15.0",
     "@mdi/js": "^7.1.96",
     "@nuxtjs/tailwindcss": "^6.3.1",
     "daisyui": "^2.50.0",

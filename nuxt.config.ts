@@ -39,11 +39,23 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ["@nuxtjs/tailwindcss", "@pinia/nuxt"],
+  modules: ["@kevinmarrec/nuxt-pwa", "@nuxtjs/tailwindcss", "@pinia/nuxt"],
 
   runtimeConfig: {
     public: {
       apiBase: "/",
+    },
+  },
+
+  // @ts-ignore
+  pwa: {
+    manifest: {
+      name: "FotoPoema",
+      short_name: "FotoPoema",
+      description:
+        "Convierte tus fotografías en poemas usando Google Cloud Vision + GPT-3",
+      theme_color: "#dd2d44",
+      lang: "es",
     },
   },
 });
