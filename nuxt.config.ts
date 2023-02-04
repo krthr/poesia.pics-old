@@ -34,10 +34,14 @@ export default defineNuxtConfig({
       script: isProd
         ? [
             {
+              tagPosition: "bodyClose",
               async: true,
               src: "https://www.googletagmanager.com/gtag/js?id=G-K40DJ3THNZ",
             },
-            { innerHTML: googleAnalyticsHtml },
+            {
+              tagPosition: "bodyClose",
+              innerHTML: googleAnalyticsHtml,
+            },
           ]
         : [],
     },
