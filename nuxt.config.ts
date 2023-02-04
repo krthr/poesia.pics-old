@@ -23,6 +23,12 @@ const SCRIPTS: any[] = [
     src: "https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js",
     tagPosition: "bodyClose",
   },
+  {
+    async: true,
+    src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7162418263936911",
+    crossorigin: "anonymous",
+    tagPosition: "bodyClose",
+  },
 ];
 
 if (isProd) {
