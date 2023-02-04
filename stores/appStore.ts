@@ -2,8 +2,11 @@ import { defineStore } from "pinia";
 
 interface Result {
   poem: string;
+  metadata: {
+    keywords: string[];
+  };
+  author: string;
   preview: string;
-  labels: string[];
 }
 
 const Modes: Record<string, "erotic" | "romantic"> = {
@@ -11,19 +14,26 @@ const Modes: Record<string, "erotic" | "romantic"> = {
   romantic: "romantic",
 };
 
+const defaultResultState: Result = {
+  poem: "",
+  preview: "",
+  metadata: {
+    keywords: [],
+  },
+  author: "",
+};
+
 export const useAppStore = defineStore("app", () => {
   const config = useRuntimeConfig();
   const route = useRoute();
 
   const loading = ref(false);
-  const result = reactive<Result>({ poem: "", preview: "", labels: [] });
+  const result = reactive<Result>({ ...defaultResultState });
 
   async function generatePoem(file: File) {
     loading.value = true;
 
-    result.labels = [];
-    result.poem = "";
-    result.preview = "";
+    Object.assign(result, { ...defaultResultState });
 
     const form = new FormData();
     form.append("image", file);
@@ -56,10 +66,14 @@ export const useAppStore = defineStore("app", () => {
         }
       }
 
-      const { poem, labels } = json;
-      result.poem = poem;
-      result.labels = labels;
-      result.preview = URL.createObjectURL(file);
+      Object.assign(result, {
+        poem: json.poem,
+        metadata: {
+          keywords: json.metadata.keywords,
+        },
+        author: json.author,
+        preview: URL.createObjectURL(file),
+      });
     } catch (error: any) {
       console.error({ error });
 

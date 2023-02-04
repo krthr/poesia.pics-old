@@ -12,10 +12,10 @@
       />
 
       <p
-        v-if="appStore.result.labels?.length"
+        v-if="appStore.result.metadata.keywords.length"
         class="text-sm mt-3 mb-5 font-serif font-light"
       >
-        {{ appStore.result.labels.join(", ") }}
+        {{ appStore.result.metadata.keywords.join(", ") }}
       </p>
 
       <p class="whitespace-pre-wrap font-serif">{{ appStore.result.poem }}</p>
