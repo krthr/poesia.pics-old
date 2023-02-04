@@ -3,12 +3,6 @@
     class="footer footer-center p-8 pb-6 bg-primary text-primary-content bottom-0"
   >
     <div>
-      <!-- <SvgIcon
-        class="w-10 h-10 text-red-800"
-        :path="mdiNotebookHeart"
-        type="mdi"
-      /> -->
-
       <p class="font-bold inline-flex items-center">
         Hecho con
         <SvgIcon

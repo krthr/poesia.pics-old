@@ -43,7 +43,12 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ["@kevinmarrec/nuxt-pwa", "@nuxtjs/tailwindcss", "@pinia/nuxt"],
+  modules: [
+    "@nuxtjs/device",
+    "@kevinmarrec/nuxt-pwa",
+    "@nuxtjs/tailwindcss",
+    "@pinia/nuxt",
+  ],
 
   runtimeConfig: {
     public: {
