@@ -46,6 +46,7 @@
 import SvgIcon from "@jamescoyle/vue-icon";
 import { mdiDownload } from "@mdi/js";
 import { useAppStore } from "@/stores/appStore";
+import { logEvent } from "@/utils/gtag";
 
 const appStore = useAppStore();
 const downloading = ref(false);
@@ -57,6 +58,8 @@ async function downloadImage() {
     const { generateAndDownloadImage } = await import("@/utils/image");
     const element = document.querySelector("#poem")! as HTMLElement;
     await generateAndDownloadImage(element, appStore.result.poem);
+
+    logEvent("share");
   } catch (error) {
     console.error(error);
   }

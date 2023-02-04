@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import { logEvent } from "@/utils/gtag";
 
 export interface Color {
   color: {
@@ -95,6 +96,8 @@ export const useAppStore = defineStore("app", () => {
         preview: URL.createObjectURL(file),
         generatedAt,
       } as Result);
+
+      logEvent("generate_poem", { keywords: json.metadata.keywords });
     } catch (error: any) {
       console.error({ error });
 
