@@ -23,7 +23,7 @@
         </p>
         <button
           :class="{
-            'btn btn-primary': true,
+            'btn btn-primary my-4': true,
             loading: appStore.loading,
           }"
           :disabled="appStore.loading"
@@ -31,6 +31,10 @@
         >
           Subir foto
         </button>
+
+        <p class="my-3 text-xs italic max-w-sm mx-auto">
+          Obtendrás mejores resultados en fotografías de paisajes y retratos
+        </p>
 
         <input
           id="file"
