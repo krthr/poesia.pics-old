@@ -94,6 +94,7 @@ export default defineNuxtConfig({
       ogType: false,
       ogSiteName: false,
       twitterCard: false,
+      appleStatusBarStyle: false,
     },
   },
 });
