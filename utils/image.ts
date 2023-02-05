@@ -23,25 +23,7 @@ export async function generateAndDownloadImage(
     return;
   }
 
-  const files = [new File([blob], "poema.jpg")];
-
-  if (navigator.canShare) {
-    const valid = navigator.canShare({ files });
-
-    if (valid) {
-      try {
-        await navigator.share({
-          files,
-          title: "poesía.pics",
-          text: poem,
-        });
-
-        return;
-      } catch (error) {}
-    }
-  }
-
-  const dataUrl = URL.createObjectURL(files[0]);
+  const dataUrl = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.download = "poema.jpg";
   a.href = dataUrl;
