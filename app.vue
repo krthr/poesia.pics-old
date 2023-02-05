@@ -29,6 +29,5 @@ useServerSeoMeta({
   ogImage: "https://poesia.pics/icon.png",
   twitterCard: "summary_large_image",
   twitterCreator: "_krthr",
-  appleMobileWebAppTitle: siteName,
 });
 </script>

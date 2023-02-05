@@ -49,6 +49,8 @@ if (isProd) {
 export default defineNuxtConfig({
   app: {
     head: {
+      title: "poesía.pics - Una foto, un poema",
+
       htmlAttrs: {
         lang: "es",
         "data-theme": "pastel",
@@ -94,7 +96,6 @@ export default defineNuxtConfig({
       ogType: false,
       ogSiteName: false,
       twitterCard: false,
-      appleStatusBarStyle: false,
     },
   },
 });
