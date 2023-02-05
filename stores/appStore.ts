@@ -3,8 +3,12 @@ import { logEvent } from "@/utils/gtag";
 import { AnnotateImage, GeneratePoem } from "@/composables/useApi";
 import LogRocket from "logrocket";
 
-interface Result extends GeneratePoem, AnnotateImage {
+interface Result
+  extends Pick<GeneratePoem, "author" | "poem" | "generatedAt">,
+    Pick<AnnotateImage, "colors" | "keywords"> {
   preview: string;
+  generatePoemSignature?: string;
+  storePoemSignature?: string;
 }
 
 export const useAppStore = defineStore("app", () => {
@@ -36,7 +40,8 @@ export const useAppStore = defineStore("app", () => {
         generatedAt: poem.generatedAt,
         keywords: annotations.keywords,
         poem: poem.poem,
-        signature: annotations.signature,
+        generatePoemSignature: annotations.signature,
+        storePoemSignature: poem.signature,
         preview,
       };
 

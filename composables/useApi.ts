@@ -14,6 +14,7 @@ export interface GeneratePoem {
   poem: string;
   author: string;
   generatedAt: string;
+  signature: string;
 }
 
 export default function () {
