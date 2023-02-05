@@ -23,7 +23,11 @@ export const useAppStore = defineStore("app", () => {
         typeof route.query.mode === "string" ? route.query.mode : undefined;
 
       const annotations = await api.annotateImage(file);
-      const poem = await api.generatePoem(annotations.keywords, mode);
+      const poem = await api.generatePoem(
+        annotations.signature,
+        annotations.keywords,
+        mode
+      );
       const preview = await toDataURL(file);
 
       result.value = {
@@ -32,6 +36,7 @@ export const useAppStore = defineStore("app", () => {
         generatedAt: poem.generatedAt,
         keywords: annotations.keywords,
         poem: poem.poem,
+        signature: annotations.signature,
         preview,
       };
 

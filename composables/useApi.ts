@@ -7,6 +7,7 @@ export interface AnnotateImage {
     fraction: string;
     color: string;
   }[];
+  signature: string;
 }
 
 export interface GeneratePoem {
@@ -43,9 +44,13 @@ export default function () {
     return request<AnnotateImage>("/annotateImage", form);
   }
 
-  async function generatePoem(keywords: string[], mode: string | undefined) {
+  async function generatePoem(
+    signature: string,
+    keywords: string[],
+    mode: string | undefined
+  ) {
     const body = { keywords, mode };
-    return request<GeneratePoem>("/generatePoem", body);
+    return request<GeneratePoem>("/generatePoem?signature=" + signature, body);
   }
 
   return { generatePoem, annotateImage };
