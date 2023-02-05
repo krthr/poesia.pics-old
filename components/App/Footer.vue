@@ -3,8 +3,13 @@
     class="footer footer-center p-8 pb-6 bg-primary text-primary-content bottom-0"
   >
     <div>
-      <a href="https://www.buymeacoffee.com/wilsontovar" target="_blank">
+      <a
+        href="https://www.buymeacoffee.com/wilsontovar"
+        target="_blank"
+        aria-label="Donar"
+      >
         <img
+          alt="Donar"
           src="https://img.buymeacoffee.com/button-api/?text=Tu aporte significa mucho&emoji=💖&slug=wilsontovar&button_colour=FF5F5F&font_colour=ffffff&font_family=Poppins&outline_colour=000000&coffee_colour=FFDD00"
         />
       </a>
