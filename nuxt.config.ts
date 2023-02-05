@@ -49,16 +49,6 @@ if (isProd) {
 export default defineNuxtConfig({
   app: {
     head: {
-      title: "poesía.pics - Una foto, un poema",
-
-      meta: [
-        {
-          name: "description",
-          content:
-            "Convierte tus fotografías en poemas usando Google Cloud Vision + GPT-3",
-        },
-      ],
-
       htmlAttrs: {
         lang: "es",
         "data-theme": "pastel",
@@ -85,7 +75,6 @@ export default defineNuxtConfig({
     },
   },
 
-  // @ts-ignore
   pwa: {
     manifest: {
       name: "poesía.pics",
@@ -94,6 +83,17 @@ export default defineNuxtConfig({
         "Convierte tus fotografías en poemas usando Google Cloud Vision + GPT-3",
       theme_color: "#dd2d44",
       lang: "es",
+    },
+
+    meta: {
+      author: false,
+      name: undefined,
+      ogTitle: false,
+      ogDescription: false,
+      ogImage: false,
+      ogType: false,
+      ogSiteName: false,
+      twitterCard: false,
     },
   },
 });
