@@ -6,7 +6,7 @@
   >
     <div id="poem" class="w-full p-3">
       <img
-        class="w-full rounded-md aspect-square object-cover"
+        class="w-full h-auto rounded-md"
         :alt="appStore.result!.poem"
         :src="appStore.result!.preview"
       />
