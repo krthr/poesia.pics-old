@@ -1,111 +1,43 @@
 import { defineStore } from "pinia";
 import { logEvent } from "@/utils/gtag";
+import { AnnotateImage, GeneratePoem } from "@/composables/useApi";
+import LogRocket from "logrocket";
 
-export interface Color {
-  color: {
-    blue: number;
-    green: number;
-    red: number;
-  };
-  pixelFraction: number;
-  score: number;
-}
-
-interface Result {
-  poem: string;
-  metadata: {
-    colors: Color[];
-    keywords: string[];
-  };
-  author: string;
+interface Result extends GeneratePoem, AnnotateImage {
   preview: string;
-  generatedAt?: string;
 }
-
-const Modes: Record<string, "erotic" | "romantic"> = {
-  erotic: "erotic",
-  romantic: "romantic",
-};
-
-const defaultResultState: Result = {
-  poem: "",
-  preview: "",
-  metadata: {
-    colors: [],
-    keywords: [],
-  },
-  author: "",
-};
 
 export const useAppStore = defineStore("app", () => {
-  const config = useRuntimeConfig();
+  const api = useApi();
   const route = useRoute();
 
   const loading = ref(false);
-  const result = reactive<Result>({ ...defaultResultState });
+  const result = ref<Result | undefined>(undefined);
 
   async function generatePoem(file: File) {
     loading.value = true;
-
-    Object.assign(result, { ...defaultResultState });
-
-    const form = new FormData();
-    form.append("image", file);
-
-    let json;
+    result.value = undefined;
 
     try {
-      const _mode = route.query.mode;
-      const url = new URL(config.public.apiBase + "/poems");
+      const mode =
+        typeof route.query.mode === "string" ? route.query.mode : undefined;
 
-      if (typeof _mode === "string") {
-        const mode = Modes[_mode];
-        url.searchParams.append("mode", mode);
-      }
+      const annotations = await api.annotateImage(file);
+      const poem = await api.generatePoem(annotations.keywords, mode);
 
-      const response = await fetch(url.toString(), {
-        method: "post",
-        body: form,
-      });
-
-      json = await response.json();
-
-      if (!response.ok) {
-        if (json.errors?.at(0)?.message) {
-          throw new Error(json.errors.at(0).message);
-        } else {
-          throw new Error(
-            "Un error inesperado ha ocurrido. Inténtalo más tarde."
-          );
-        }
-      }
-
-      const now = new Date();
-      const generatedAt = `${now.getDate().toString().padStart(2, "0")}/${now
-        .getMonth()
-        .toString()
-        .padStart(2, "0")}/${now.getFullYear()}`;
-
-      Object.assign(result, {
-        poem: json.poem,
-        metadata: {
-          colors: json.metadata.colors,
-          keywords: json.metadata.keywords,
-        },
-        author: json.author,
+      result.value = {
+        author: poem.author,
+        colors: annotations.colors,
+        generatedAt: poem.generatedAt,
+        keywords: annotations.keywords,
+        poem: poem.poem,
         preview: URL.createObjectURL(file),
-        generatedAt,
-      } as Result);
+      };
 
-      logEvent("generate_poem", { keywords: json.metadata.keywords });
+      logEvent("generate_poem", { keywords: annotations.keywords });
+      LogRocket.track("generate_poem", { keywords: annotations.keywords });
     } catch (error: any) {
-      console.error({ error });
-
-      if (error instanceof SyntaxError) {
-        alert("Un error inesperado ha ocurrido. Inténtalo más tarde.");
-      } else {
-        alert(error.message);
-      }
+      alert(error.message);
     }
 
     loading.value = false;

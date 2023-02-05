@@ -2,11 +2,11 @@
   <p class="text-sm font-serif inline-flex items-center italic">
     <SvgIcon :path="mdiRobotLoveOutline" type="mdi" class="w-4 h-4" />
     <span class="ml-2">poesía.pics</span>
-    <span v-if="appStore.result.generatedAt" class="mx-2 font-bold text-lg">
+    <span v-if="appStore.result!.generatedAt" class="mx-2 font-bold text-lg">
       ⋅
     </span>
-    <span v-if="appStore.result.generatedAt">
-      {{ appStore.result.generatedAt }}
+    <span v-if="appStore.result!.generatedAt">
+      {{ appStore.result!.generatedAt }}
     </span>
   </p>
 </template>

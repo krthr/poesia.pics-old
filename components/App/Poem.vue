@@ -7,19 +7,19 @@
     <div id="poem" class="w-full p-3">
       <img
         class="w-full rounded-md aspect-square object-cover"
-        :alt="appStore.result.poem"
-        :src="appStore.result.preview"
+        :alt="appStore.result!.poem"
+        :src="appStore.result!.preview"
       />
 
       <p
-        v-if="appStore.result.metadata.keywords.length"
+        v-if="appStore.result!.keywords.length"
         class="text-sm mt-3 font-serif font-light italic"
       >
-        {{ appStore.result.metadata.keywords.join(", ") }}
+        {{ appStore.result!.keywords.join(", ") }}
       </p>
 
       <p class="whitespace-pre-wrap font-serif my-5 text-lg">
-        {{ appStore.result.poem }}
+        {{ appStore.result!.poem }}
       </p>
 
       <LazyAppPoemSignature />
