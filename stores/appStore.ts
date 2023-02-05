@@ -24,6 +24,7 @@ export const useAppStore = defineStore("app", () => {
 
       const annotations = await api.annotateImage(file);
       const poem = await api.generatePoem(annotations.keywords, mode);
+      const preview = await toDataURL(file);
 
       result.value = {
         author: poem.author,
@@ -31,7 +32,7 @@ export const useAppStore = defineStore("app", () => {
         generatedAt: poem.generatedAt,
         keywords: annotations.keywords,
         poem: poem.poem,
-        preview: URL.createObjectURL(file),
+        preview,
       };
 
       logEvent("generate_poem", { keywords: annotations.keywords });

@@ -31,3 +31,19 @@ export async function generateAndDownloadImage(
 
   URL.revokeObjectURL(dataUrl);
 }
+
+export async function toDataURL(file: File) {
+  return new Promise<string>((resolve) => {
+    const reader = new FileReader();
+
+    reader.onerror = () => {
+      resolve("");
+    };
+
+    reader.onload = () => {
+      resolve(reader.result as string);
+    };
+
+    reader.readAsDataURL(file);
+  });
+}
