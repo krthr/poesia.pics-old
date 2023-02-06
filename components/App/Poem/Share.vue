@@ -1,14 +1,14 @@
 <template>
-  <div class="mt-10 text-center w-full">
+  <div class="mt-10 text-center w-full flex justify-between">
     <button
       :class="{
-        'btn btn-sm btn-ghost btn-outline gap-2': true,
+        'btn btn-ghost btn-outline gap-2': true,
         loading: downloading,
       }"
       :disabled="downloading"
       @click="downloadImage()"
     >
-      <SvgIcon :path="mdiDownload" type="mdi" class="w-4 h-4" />
+      <SvgIcon :path="mdiDownload" type="mdi" class="w-5 h-5" />
       <span>Descargar poema</span>
     </button>
   </div>

@@ -25,7 +25,7 @@ export async function generateAndDownloadImage(
 
   const dataUrl = URL.createObjectURL(blob);
   const a = document.createElement("a");
-  a.download = "poema.jpg";
+  a.download = `poema-${new Date()}.jpg`;
   a.href = dataUrl;
   a.click();
 
