@@ -1,16 +1,25 @@
 <template>
-  <div class="mt-10 text-center w-full flex justify-between">
-    <button
-      :class="{
-        'btn btn-ghost btn-outline gap-2': true,
-        loading: downloading,
-      }"
-      :disabled="downloading"
-      @click="downloadImage()"
-    >
-      <SvgIcon :path="mdiDownload" type="mdi" class="w-5 h-5" />
-      <span>Descargar poema</span>
-    </button>
+  <div class="mt-8 text-center w-full flex flex-col justify-between">
+    <div class="mb-6">
+      <h2 class="text-xl">
+        Comparte tu poema usando el hashtag
+        <span class="font-bold">#PoesiaPics</span>
+      </h2>
+    </div>
+
+    <div>
+      <button
+        :class="{
+          'btn btn-ghost btn-outline gap-2': true,
+          loading: downloading,
+        }"
+        :disabled="downloading"
+        @click="downloadImage()"
+      >
+        <SvgIcon :path="mdiDownload" type="mdi" class="w-5 h-5" />
+        <span>Descargar poema</span>
+      </button>
+    </div>
   </div>
 </template>
 
