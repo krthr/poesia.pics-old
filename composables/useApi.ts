@@ -1,19 +1,16 @@
 import Axios from "axios";
 import LogRocket from "logrocket";
 
-export interface AnnotateImage {
-  keywords: string[];
+export interface GeneratePoem {
+  author: string;
   colors: {
     fraction: string;
     color: string;
   }[];
-  signature: string;
-}
-
-export interface GeneratePoem {
-  poem: string;
-  author: string;
   generatedAt: string;
+  imgHash: string;
+  keywords: string[];
+  poem: string;
   signature: string;
 }
 
@@ -24,9 +21,9 @@ export default function () {
     baseURL: config.public.apiBase,
   });
 
-  async function request<T>(path: string, body: any) {
+  async function request<T>(path: string, body: any, params?: any) {
     try {
-      const response = await client.post<T>(path, body);
+      const response = await client.post<T>(path, body, { params });
       const data = response.data;
       return data;
     } catch (error: any) {
@@ -39,20 +36,14 @@ export default function () {
     }
   }
 
-  async function annotateImage(file: File) {
+  async function generatePoem(file: File, mode?: string) {
     const form = new FormData();
     form.append("image", file);
-    return request<AnnotateImage>("/annotateImage", form);
+
+    return request<GeneratePoem>("/poems/generate", form, {
+      mode,
+    });
   }
 
-  async function generatePoem(
-    signature: string,
-    keywords: string[],
-    mode: string | undefined
-  ) {
-    const body = { keywords, mode };
-    return request<GeneratePoem>("/generatePoem?signature=" + signature, body);
-  }
-
-  return { generatePoem, annotateImage };
+  return { generatePoem };
 }

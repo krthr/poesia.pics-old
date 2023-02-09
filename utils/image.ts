@@ -1,9 +1,6 @@
 import { toBlob } from "html-to-image";
 
-export async function generateAndDownloadImage(
-  node: HTMLElement,
-  poem: string
-) {
+export async function generateAndDownloadImage(node: HTMLElement) {
   const device = useDevice();
 
   if (device.isSafari || device.isIos || device.isMacOS) {
