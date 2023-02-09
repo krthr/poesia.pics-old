@@ -33,6 +33,21 @@ export const useAppStore = defineStore("app", () => {
       const poem = await api.generatePoem(file, mode);
       const preview = await toDataURL(file);
 
+      if (!window.Intl && !window.Intl.DateTimeFormat) {
+        const date = new Date(poem.generatedAt);
+        poem.generatedAt = [
+          date.getDate().toString().padStart(2, "0"),
+          (date.getMonth() + 1).toString().padStart(2, "0"),
+          date.getFullYear(),
+        ].join("/");
+      } else {
+        poem.generatedAt = Intl.DateTimeFormat("es", {
+          year: "numeric",
+          month: "short",
+          day: "2-digit",
+        }).format(new Date(poem.generatedAt));
+      }
+
       result.value = {
         ...poem,
         preview,
