@@ -6,7 +6,10 @@ Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introdu
 
 Create a `.env` file:
 ```.env
-NUXT_PUBLIC_API_BASE=http://127.0.0.1:3333/api
+NUXT_APP_KEY=
+NUXT_OPENAI_API_KEY=
+NUXT_OPENAI_MODEL=
+NUXT_GOOGLE_APPLICATION_CREDENTIALS_JSON=
 ```
 
 Make sure to install the dependencies:
