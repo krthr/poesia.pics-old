@@ -1,5 +1,5 @@
-import Crypto from "node:crypto";
 import Sharp from "sharp";
+import { logger } from "../logger";
 
 export async function processImage(base64: string) {
   const uri = base64.split(";base64,").pop();
@@ -14,6 +14,7 @@ export async function processImage(base64: string) {
 
     return { buffer, base64 };
   } catch (error) {
+    logger.error(error);
     return undefined;
   }
 }

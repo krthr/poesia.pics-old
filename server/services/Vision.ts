@@ -1,4 +1,5 @@
 import { ImageAnnotatorClient } from "@google-cloud/vision";
+import { logger } from "../logger";
 
 const runtimeConfig = useRuntimeConfig();
 
@@ -94,7 +95,7 @@ export async function annotateImage(
 
     return { objects, colors, labels };
   } catch (error) {
-    console.error(error);
+    logger.error(error);
     return undefined;
   }
 }

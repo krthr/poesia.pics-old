@@ -1,7 +1,5 @@
-// import Env from "@ioc:Adonis/Core/Env";
-// import Logger from "@ioc:Adonis/Core/Logger";
-
 import { Configuration, OpenAIApi } from "openai";
+import { logger } from "../logger";
 
 const runtimeConfig = useRuntimeConfig();
 const configuration = new Configuration({
@@ -31,7 +29,7 @@ export async function createCompletion(prompt: string, options: Options = {}) {
     const text = response.data.choices.at(0)?.text?.trim();
     return text;
   } catch (error: any) {
-    console.error(error);
+    logger.error(error);
 
     // if (error.response?.status === 429) {
     //   return {

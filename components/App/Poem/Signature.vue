@@ -10,6 +10,7 @@
 </template>
 
 <script lang="ts" setup>
+// @ts-ignore
 import SvgIcon from "@jamescoyle/vue-icon";
 import { mdiRobotLoveOutline } from "@mdi/js";
 import { useAppStore } from "@/stores/appStore";

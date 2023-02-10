@@ -43,6 +43,7 @@
 </template>
 
 <script lang="ts" setup>
+// @ts-ignore
 import SvgIcon from "@jamescoyle/vue-icon";
 import {
   mdiInstagram,

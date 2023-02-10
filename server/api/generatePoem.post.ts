@@ -1,3 +1,4 @@
+import { logger } from "../logger";
 import { getRandomAuthors } from "../services/Authors";
 import { createCompletion } from "../services/OpenAi";
 import { annotateImage } from "../services/Vision";
@@ -26,8 +27,23 @@ export interface Poem {
 }
 
 export default defineEventHandler<Poem>(async (event) => {
-  const body = await readBody(event);
-  const { mode } = getQuery(event);
+  let body;
+  let query;
+
+  try {
+    body = await readBody(event);
+    query = getQuery(event);
+  } catch (error) {
+    logger.error(error);
+    throw createError({
+      statusCode: 400,
+      statusMessage: "Error al leer la petición.",
+    });
+  }
+
+  const mode = query.mode;
+
+  logger.info({ mode }, "generatePoem");
 
   const parse = await GeneratePoemSchema.safeParseAsync(body);
   if (!parse.success) {
@@ -102,6 +118,12 @@ export default defineEventHandler<Poem>(async (event) => {
   };
 
   const signature = generateSignature(data);
+  if (!signature) {
+    throw createError({
+      statusCode: 500,
+      statusMessage: "Ha ocurrido un error al generar el poema.",
+    });
+  }
 
   return {
     ...data,

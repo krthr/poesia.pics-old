@@ -24,14 +24,13 @@
 </template>
 
 <script lang="ts" setup>
-import SvgIcon from "@jamescoyle/vue-icon";
+// @ts-ignore
+import SvgIcon from "@jamescoyle/vue-icon"; 
 import { mdiDownload } from "@mdi/js";
 
-import { useAppStore } from "@/stores/appStore";
 import { logEvent } from "@/utils/gtag";
 import LogRocket from "logrocket";
 
-const appStore = useAppStore();
 const downloading = ref(false);
 
 async function downloadImage() {
@@ -40,7 +39,7 @@ async function downloadImage() {
   try {
     const { generateAndDownloadImage } = await import("@/utils/image");
     const element = document.querySelector("#poem")! as HTMLElement;
-    await generateAndDownloadImage(element, appStore.result!.poem);
+    await generateAndDownloadImage(element);
 
     logEvent("share");
     LogRocket.track("share");
