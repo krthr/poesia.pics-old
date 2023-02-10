@@ -51,6 +51,13 @@ export default defineNuxtConfig({
   ],
 
   runtimeConfig: {
+    appKey: "",
+
+    openaiApiKey: "",
+    openaiModel: "text-curie-001",
+
+    googleApplicationCredentialsJson: "",
+
     public: {
       apiBase: "/",
     },
@@ -76,5 +83,9 @@ export default defineNuxtConfig({
       ogSiteName: false,
       twitterCard: false,
     },
+  },
+
+  typescript: {
+    strict: true,
   },
 });

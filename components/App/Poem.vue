@@ -8,7 +8,7 @@
       <img
         class="w-full h-auto rounded-md"
         :alt="appStore.result!.poem"
-        :src="appStore.result!.preview"
+        :src="appStore.result!.image"
       />
 
       <p
