@@ -14,6 +14,7 @@
     "@nuxtjs/device": "^3.0.0",
     "@nuxtjs/tailwindcss": "^6.3.1",
     "@types/node": "^18.11.18",
+    "@types/sharp": "^0.31.1",
     "daisyui": "^2.50.0",
     "nuxt": "^3.1.1"
   },
@@ -25,6 +26,7 @@
     "logrocket": "^3.0.1",
     "openai": "^3.1.0",
     "pinia": "^2.0.30",
-    "sharp": "^0.31.3"
+    "sharp": "^0.31.3",
+    "zod": "^3.20.6"
   }
 }
