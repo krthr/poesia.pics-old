@@ -1,4 +1,4 @@
-import { ImageAnnotatorClient } from "@google-cloud/vision";
+import { ImageAnnotatorClient, protos } from "@google-cloud/vision";
 import { logger } from "../logger";
 
 const runtimeConfig = useRuntimeConfig();
@@ -8,9 +8,13 @@ const client = new ImageAnnotatorClient({
   credentials,
 });
 
-interface Color {
-  color: string;
-  fraction: string;
+export interface Color {
+  color: {
+    red: number;
+    green: number;
+    blue: number;
+  };
+  pixelFraction: number;
 }
 
 interface AnnotateImage {
@@ -37,7 +41,7 @@ export async function annotateImage(
           type: "LABEL_DETECTION",
         },
         {
-          maxResults: 5,
+          maxResults: 10,
           type: "IMAGE_PROPERTIES",
         },
       ],
@@ -69,29 +73,24 @@ export async function annotateImage(
         )
         .map((l) => l.description!) || [];
 
-    const dominantColors =
-      result.imagePropertiesAnnotation.dominantColors.colors
-        .filter((color) => !!color.pixelFraction)
-        .sort((a, b) => b.pixelFraction! - a.pixelFraction!)
-        .map((color) => ({
-          pixelFraction: color.pixelFraction || 0,
-          color: color.color || {},
-        })) || [];
-
-    const totalColors = dominantColors.reduce(
-      (sum, color) => sum + (color.pixelFraction || 0),
+    const total = result.imagePropertiesAnnotation.dominantColors.colors.reduce(
+      (sum, color) => {
+        return sum + (color.pixelFraction || 0);
+      },
       0
     );
 
-    const colors: Color[] = dominantColors.map(({ color, pixelFraction }) => {
-      const fraction =
-        (((pixelFraction || 0) / totalColors) * 100).toFixed(2) + "%";
-
-      return {
-        color: `rgb(${color?.red},${color?.green},${color?.blue})`,
-        fraction,
-      };
-    });
+    const colors: Color[] =
+      result.imagePropertiesAnnotation.dominantColors.colors
+        .sort((a, b) => b.pixelFraction! - a.pixelFraction!)
+        .map(({ color, pixelFraction }) => ({
+          color: {
+            red: color?.red || 0,
+            green: color?.green || 0,
+            blue: color?.blue || 0,
+          },
+          pixelFraction: (pixelFraction || 0) / total,
+        })) || [];
 
     return { objects, colors, labels };
   } catch (error) {

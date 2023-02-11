@@ -10,24 +10,7 @@ const MODES: Record<string, string> = {
   romantic: "A romantic",
 };
 
-interface Color {
-  color: string;
-  fraction: string;
-}
-
-export interface Poem {
-  author: string;
-  colors: Color[];
-  image: string;
-  generatedAt: Date;
-  generatedAtLabel: string;
-  keywords: string[];
-  mode?: string;
-  poem: string;
-  signature: string;
-}
-
-export default defineEventHandler<Poem>(async (event) => {
+export default defineEventHandler(async (event) => {
   let body;
   let query;
 
@@ -84,7 +67,9 @@ export default defineEventHandler<Poem>(async (event) => {
     poemPrompt.push("A");
   }
 
-  poemPrompt.push(`poem in Spanish written by ${author} inspired by:`);
+  poemPrompt.push(
+    `poem in Spanish written by ${author.join(", ")} inspired by:`
+  );
   poemPrompt.push(keywords.join(", "));
   poemPrompt.push("\n");
 

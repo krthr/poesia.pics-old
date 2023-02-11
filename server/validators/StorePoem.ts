@@ -1,8 +1,12 @@
 import { z } from "zod";
 
 const ColorSchema = z.object({
-  color: z.string(),
-  fraction: z.string(),
+  color: z.object({
+    red: z.number(),
+    green: z.number(),
+    blue: z.number(),
+  }),
+  pixelFraction: z.number(),
 });
 
 export const StorePoemSchema = z.object({

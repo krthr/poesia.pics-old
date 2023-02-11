@@ -1,3 +1,5 @@
+import { sampleSize } from "lodash-es";
+
 const AUTHORS = [
   // ideas de johandra
   "Pessoa",
@@ -21,21 +23,6 @@ const AUTHORS = [
   "Pablo Neruda",
 ];
 
-function getRandomSample<T>(arr: T[], size: number) {
-  const shuffled = arr.slice(0);
-  let i = arr.length;
-
-  while (i--) {
-    const index = Math.floor((i + 1) * Math.random());
-    const temp = shuffled[index];
-    shuffled[index] = shuffled[i];
-    shuffled[i] = temp;
-  }
-
-  return shuffled.slice(0, size);
-}
-
 export function getRandomAuthors() {
-  const authors = getRandomSample(AUTHORS, 7).join(", ");
-  return authors;
+  return sampleSize(AUTHORS, 7);
 }
