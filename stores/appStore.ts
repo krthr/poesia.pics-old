@@ -1,7 +1,7 @@
 import LogRocket from "logrocket";
 import { defineStore } from "pinia";
 
-import type { Poem } from "@/server/api/generatePoem.post";
+import type { Poem } from "~~/server/api/poems/generate.post";
 import { logEvent } from "@/utils/gtag";
 
 export const useAppStore = defineStore("app", () => {
@@ -18,7 +18,7 @@ export const useAppStore = defineStore("app", () => {
       const mode = route.query.mode;
 
       const image = await toDataURL(file);
-      const poem = await $fetch("/api/generatePoem", {
+      const poem = await $fetch("/api/poems/generate", {
         method: "post",
         query: { mode },
         body: { image },

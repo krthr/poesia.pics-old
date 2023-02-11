@@ -1,9 +1,9 @@
-import { logger } from "../logger";
-import { getRandomAuthors } from "../services/Authors";
-import { createCompletion } from "../services/OpenAi";
-import { annotateImage } from "../services/Vision";
-import { processImage } from "../utils/image";
-import { GeneratePoemSchema } from "../validators/GeneratePoem";
+import { GeneratePoemSchema } from "@/server/validators/GeneratePoem";
+import { annotateImage } from "@/server/services/Vision";
+import { createCompletion } from "@/server/services/OpenAi";
+import { logger } from "@/server/logger";
+import { getRandomAuthors } from "@/server/services/Authors";
+import { processImage } from "@/server/utils/image";
 
 const MODES: Record<string, string> = {
   erotic: "An erotic",
