@@ -9,8 +9,8 @@ const client = new ImageAnnotatorClient({
 });
 
 interface Color {
-  fraction: string;
   color: string;
+  fraction: string;
 }
 
 interface AnnotateImage {
@@ -88,8 +88,8 @@ export async function annotateImage(
         (((pixelFraction || 0) / totalColors) * 100).toFixed(2) + "%";
 
       return {
-        fraction,
         color: `rgb(${color?.red},${color?.green},${color?.blue})`,
+        fraction,
       };
     });
 

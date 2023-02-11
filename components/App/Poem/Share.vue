@@ -7,7 +7,19 @@
       </h2>
     </div>
 
-    <div>
+    <div class="flex flex-wrap items-center justify-between px-3">
+      <button
+        :class="{
+          'btn btn-ghost btn-outline gap-2': true,
+          loading: appStore.saving,
+        }"
+        :disabled="appStore.saving"
+        @click="appStore.storePoem()"
+      >
+        <SvgIcon :path="mdiShare" type="mdi" class="w-5 h-5" />
+        <span>Publicar</span>
+      </button>
+
       <button
         :class="{
           'btn btn-ghost btn-outline gap-2': true,
@@ -17,7 +29,7 @@
         @click="downloadImage()"
       >
         <SvgIcon :path="mdiDownload" type="mdi" class="w-5 h-5" />
-        <span>Descargar poema</span>
+        <span>Descargar Imagen</span>
       </button>
     </div>
   </div>
@@ -25,12 +37,14 @@
 
 <script lang="ts" setup>
 // @ts-ignore
-import SvgIcon from "@jamescoyle/vue-icon"; 
-import { mdiDownload } from "@mdi/js";
+import SvgIcon from "@jamescoyle/vue-icon";
+import { mdiDownload, mdiShare } from "@mdi/js";
 
 import { logEvent } from "@/utils/gtag";
 import LogRocket from "logrocket";
+import { useAppStore } from "~~/stores/appStore";
 
+const appStore = useAppStore();
 const downloading = ref(false);
 
 async function downloadImage() {

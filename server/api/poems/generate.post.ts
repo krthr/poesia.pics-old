@@ -22,6 +22,7 @@ export interface Poem {
   generatedAt: Date;
   generatedAtLabel: string;
   keywords: string[];
+  mode?: string;
   poem: string;
   signature: string;
 }
@@ -41,7 +42,7 @@ export default defineEventHandler<Poem>(async (event) => {
     });
   }
 
-  const mode = query.mode;
+  const mode = typeof query.mode === "string" ? query.mode : undefined;
 
   logger.info({ mode }, "generatePoem");
 
@@ -77,7 +78,7 @@ export default defineEventHandler<Poem>(async (event) => {
   const author = getRandomAuthors();
   const poemPrompt: string[] = [];
 
-  if (typeof mode === "string" && mode in MODES) {
+  if (mode && mode in MODES) {
     poemPrompt.push(MODES[mode]);
   } else {
     poemPrompt.push("A");
@@ -114,6 +115,7 @@ export default defineEventHandler<Poem>(async (event) => {
     generatedAt,
     generatedAtLabel,
     keywords,
+    mode,
     poem,
   };
 
