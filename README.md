@@ -6,9 +6,11 @@ Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introdu
 
 Create a `.env` file:
 ```.env
-NUXT_APP_KEY=
+# https://openai.com/api/
 NUXT_OPENAI_API_KEY=
+# https://platform.openai.com/docs/models/gpt-3
 NUXT_OPENAI_MODEL=
+# GCP Service Account for Storage, Firestore & Cloud Vision API
 NUXT_GOOGLE_APPLICATION_CREDENTIALS_JSON=
 ```
 

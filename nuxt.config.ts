@@ -51,8 +51,6 @@ export default defineNuxtConfig({
   ],
 
   runtimeConfig: {
-    appKey: "",
-
     openaiApiKey: "",
     openaiModel: "text-curie-001",
 
