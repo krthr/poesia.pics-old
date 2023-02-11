@@ -25,7 +25,7 @@
 
 <script lang="ts" setup>
 // @ts-ignore
-import SvgIcon from "@jamescoyle/vue-icon"; 
+import SvgIcon from "@jamescoyle/vue-icon";
 import { mdiDownload } from "@mdi/js";
 
 import { logEvent } from "@/utils/gtag";

@@ -8,6 +8,7 @@ export const useAppStore = defineStore("app", () => {
   const route = useRoute();
 
   const loading = ref(false);
+  const saving = ref(false);
   const result = ref<Poem>();
 
   async function generatePoem(file: File) {
@@ -35,5 +36,26 @@ export const useAppStore = defineStore("app", () => {
     loading.value = false;
   }
 
-  return { loading, result, generatePoem };
+  async function storePoem() {
+    if (!result.value) {
+      return;
+    }
+
+    saving.value = true;
+
+    try {
+      const poem = await $fetch("/api/poems", {
+        method: "post",
+        body: { ...result.value },
+      });
+
+      console.log(poem);
+    } catch (error: any) {
+      alert(error.statusMessage);
+    }
+
+    saving.value = false;
+  }
+
+  return { loading, result, saving, generatePoem, storePoem };
 });

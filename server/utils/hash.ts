@@ -1,10 +1,20 @@
 import { createHash } from "node:crypto";
 import { logger } from "../logger";
 
-export function generateSignature(data: any) {
+export function generateSignature(data: any = {}) {
   try {
-    data = JSON.stringify(data);
-    const buffer = Buffer.from(data);
+    const ordered = Object.keys(data)
+      .sort()
+      .reduce((obj: any, key) => {
+        if (typeof data[key] === "undefined") {
+          return obj;
+        }
+
+        obj[key] = data[key];
+        return obj;
+      }, {});
+
+    const buffer = Buffer.from(JSON.stringify(ordered));
     return createHash("sha256").update(buffer).digest("hex");
   } catch (error) {
     logger.error(error);
