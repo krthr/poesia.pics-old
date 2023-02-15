@@ -12,6 +12,7 @@
     "@kevinmarrec/nuxt-pwa": "^0.15.0",
     "@mdi/js": "^7.1.96",
     "@nuxtjs/device": "^3.0.0",
+    "@nuxtjs/i18n": "8.0.0-beta.9",
     "@nuxtjs/tailwindcss": "^6.3.1",
     "@types/lodash-es": "^4.17.6",
     "@types/node": "^18.11.18",

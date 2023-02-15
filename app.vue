@@ -5,11 +5,13 @@
     <LazyAppPoem v-if="appStore.result" />
 
     <AppFooter />
+    <LangSelector />
   </div>
 </template>
 
 <script lang="ts" setup>
 import { useAppStore } from "@/stores/appStore";
+import LangSelector from "./components/App/LangSelector.vue";
 
 const appStore = useAppStore();
 

@@ -10,7 +10,7 @@ export const useAppStore = defineStore("app", () => {
   const saving = ref(false);
   const result = ref<InternalApi["/api/poems/generate"]["post"]>();
 
-  async function generatePoem(file: File) {
+  async function generatePoem(file: File, locale: String) {
     loading.value = true;
     result.value = undefined;
 
@@ -20,7 +20,7 @@ export const useAppStore = defineStore("app", () => {
       const image = await toDataURL(file);
       const poem = await $fetch("/api/poems/generate", {
         method: "post",
-        query: { mode },
+        query: { mode, locale },
         body: { image },
       });
 

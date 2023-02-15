@@ -10,6 +10,11 @@ const MODES: Record<string, string> = {
   romantic: "A romantic",
 };
 
+const LANGS: Record<string, string> = {
+  es: 'Spanish',
+  en: 'English'
+}
+
 export default defineEventHandler(async (event) => {
   let body;
   let query;
@@ -26,8 +31,9 @@ export default defineEventHandler(async (event) => {
   }
 
   const mode = typeof query.mode === "string" ? query.mode : undefined;
+  const locale = typeof query.locale === "string" ? query.locale : 'es';
 
-  logger.info({ mode }, "generatePoem");
+  logger.info({ mode,locale  }, "generatePoem");
 
   const parse = await GeneratePoemSchema.safeParseAsync(body);
   if (!parse.success) {
@@ -68,7 +74,7 @@ export default defineEventHandler(async (event) => {
   }
 
   poemPrompt.push(
-    `poem in Spanish written by ${author.join(", ")} inspired by:`
+    `poem in ${LANGS[locale]} written by ${author.join(", ")} inspired by:`
   );
   poemPrompt.push(keywords.join(", "));
   poemPrompt.push("\n");
