@@ -47,8 +47,6 @@ export default defineEventHandler(async (event) => {
     mode = query.mode as Mood;
   }
 
-  logger.info({ mode, locale }, "generatePoem");
-
   const parse = await GeneratePoemSchema.safeParseAsync(body);
   if (!parse.success) {
     throw createError({
@@ -86,6 +84,8 @@ export default defineEventHandler(async (event) => {
   );
   poemPrompt.push(keywords.join(", "));
   poemPrompt.push("\n");
+
+  logger.info({ mode, locale, keywords, author }, "generatePoem");
 
   const poem = await createCompletion(poemPrompt.join(" "), {
     temperature: 0.8,
