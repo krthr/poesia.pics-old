@@ -4,8 +4,6 @@ import { defineStore } from "pinia";
 import { logEvent } from "@/utils/gtag";
 
 export const useAppStore = defineStore("app", () => {
-  const route = useRoute();
-
   const loading = ref(false);
   const saving = ref(false);
   const result = ref<InternalApi["/api/poems/generate"]["post"]>();

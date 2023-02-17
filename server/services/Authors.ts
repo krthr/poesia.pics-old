@@ -1,4 +1,5 @@
 import { sampleSize } from "lodash-es";
+import { Locale } from "@/constants/locales";
 
 const ES_AUTHORS = [
   // ideas de johandra
@@ -37,14 +38,14 @@ const EN_AUTHORS = [
   "Christina Rossetti",
   "George Gordon Byron",
   "T. S. Eliot",
-  "W. H. Auden"
-]
+  "W. H. Auden",
+];
 
-const LANG_AUTHORS: Record<string, Array<string>> = {
+const LANG_AUTHORS: Record<Locale, Array<string>> = {
   es: ES_AUTHORS,
-  en: EN_AUTHORS
-}
+  en: EN_AUTHORS,
+};
 
-export function getRandomAuthors(locale:string='es') {
+export function getRandomAuthors(locale: Locale = "es") {
   return sampleSize(LANG_AUTHORS[locale], 7);
 }

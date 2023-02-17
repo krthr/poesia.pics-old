@@ -4,27 +4,31 @@
       <div class="max-w-md">
         <h1 class="text-5xl font-bold">
           <span class="font-serif inline-flex">
-            {{ $t('poes') }} <span class="italic">{{ $t('i') }}</span>{{ $t('a') }}.
+            {{ $t("poes") }}
+            <span class="italic">{{ $t("i") }}</span>
+            {{ $t("a") }}.
           </span>
-          <span class="font-light text-lg">{{ $t('pics') }}</span>
+          <span class="font-light text-lg">{{ $t("pics") }}</span>
         </h1>
         <p class="py-6">
-          {{ $t('convert_pictures') }}
+          {{ $t("convert_pictures") }}
           <span
             class="tooltip tooltip-top tooltip-accent"
             :data-tip="$t('do_not_store')"
           >
             <span class="underline decoration-dotted">
-              {{ $t('respect_your_privacy') }}
+              {{ $t("respect_your_privacy") }}
             </span>
           </span>
-          {{ $t('exclamation') }}
+          {{ $t("exclamation") }}
         </p>
 
         <div class="w-full">
-          <p class="pt-6">{{ $t('select_mood') }}</p>
-          <select v-model="selectedMood">
-            <option v-for="mood in moods" :value="mood">{{ $t(`moods.${mood}`) }}</option>
+          <p class="pt-6">{{ $t("select_mood") }}</p>
+          <select v-model="selectedMood" class="select select-bordered">
+            <option v-for="mood in MOODS" :value="mood">
+              {{ $t(`moods.${mood}`) }}
+            </option>
           </select>
         </div>
 
@@ -36,11 +40,11 @@
           :disabled="appStore.loading"
           @click="selectFile()"
         >
-          {{ $t('upload_picture') }}
+          {{ $t("upload_picture") }}
         </button>
 
         <p class="my-3 text-xs italic max-w-sm mx-auto">
-          {{ $t('better_results') }}
+          {{ $t("better_results") }}
         </p>
 
         <input
@@ -58,18 +62,12 @@
 
 <script lang="ts" setup>
 import { useAppStore } from "@/stores/appStore";
-const { locale } = useI18n()
+import { Mood, MOODS } from "@/constants/moods";
+
+const { locale } = useI18n();
 const appStore = useAppStore();
 
-let selectedMood = 'default'
-
-const moods = [
-  'default',
-  'romantic',
-  'erotic',
-  'melancholic',
-  'fun'
-]
+const selectedMood = ref<Mood>("default");
 
 function selectFile() {
   const input = document.querySelector<HTMLInputElement>("#file")!;
@@ -84,7 +82,11 @@ async function onFileChanged($event: Event) {
   const target = $event.target as HTMLInputElement;
 
   if (target && target.files) {
-    await appStore.generatePoem(target.files[0], String(locale), selectedMood);
+    await appStore.generatePoem(
+      target.files[0],
+      locale.value,
+      selectedMood.value
+    );
   }
 
   return false;
