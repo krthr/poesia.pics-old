@@ -14,4 +14,12 @@ export default {
     copy_right: 'Copyright © 2023 - All right reserved',
     share_your_poem: 'Share your poem using the hashtag',
     download_poem: 'Download poem',
+    select_mood: 'Select the mood of your poem',
+    moods: {
+        default: "Default",
+        romantic: "Romantic",
+        erotic: "Erotic",
+        melancholic: "Melancholic",
+        fun: "Fun"
+    }
 }

@@ -8,6 +8,8 @@ import { processImage } from "@/server/utils/image";
 const MODES: Record<string, string> = {
   erotic: "An erotic",
   romantic: "A romantic",
+  melancholic: "A melancholic",
+  fun: "A fun"
 };
 
 const LANGS: Record<string, string> = {

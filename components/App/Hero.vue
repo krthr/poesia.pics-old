@@ -20,6 +20,14 @@
           </span>
           {{ $t('exclamation') }}
         </p>
+
+        <div class="w-full">
+          <p class="pt-6">{{ $t('select_mood') }}</p>
+          <select v-model="selectedMood">
+            <option v-for="mood in moods" :value="mood">{{ $t(`moods.${mood}`) }}</option>
+          </select>
+        </div>
+
         <button
           :class="{
             'btn btn-primary my-4': true,
@@ -53,6 +61,16 @@ import { useAppStore } from "@/stores/appStore";
 const { locale } = useI18n()
 const appStore = useAppStore();
 
+let selectedMood = 'default'
+
+const moods = [
+  'default',
+  'romantic',
+  'erotic',
+  'melancholic',
+  'fun'
+]
+
 function selectFile() {
   const input = document.querySelector<HTMLInputElement>("#file")!;
   input.click();
@@ -66,7 +84,7 @@ async function onFileChanged($event: Event) {
   const target = $event.target as HTMLInputElement;
 
   if (target && target.files) {
-    await appStore.generatePoem(target.files[0], String(locale));
+    await appStore.generatePoem(target.files[0], String(locale), selectedMood);
   }
 
   return false;
