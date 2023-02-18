@@ -16,15 +16,15 @@
     </div>
     <div>
       <p class="font-bold inline-flex items-center">
-        Hecho con
+        {{ $t('made_with') }}
         <SvgIcon
           class="w-4 h-4 text-red-700 mx-1"
           :path="mdiHeart"
           type="mdi"
         />
-        por Wilson Tovar
+        {{ $t('by_wilson') }}
       </p>
-      <p>Copyright © 2023 - All right reserved</p>
+      <p>{{ $t('copy_right') }}</p>
     </div>
     <div>
       <div class="grid grid-flow-col gap-4">
@@ -52,6 +52,7 @@ import {
   mdiLinkedin,
   mdiHeart,
 } from "@mdi/js";
+const { locale } = useI18n()
 
 const socialLinks = [
   {

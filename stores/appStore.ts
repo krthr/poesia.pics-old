@@ -4,23 +4,19 @@ import { defineStore } from "pinia";
 import { logEvent } from "@/utils/gtag";
 
 export const useAppStore = defineStore("app", () => {
-  const route = useRoute();
-
   const loading = ref(false);
   const saving = ref(false);
   const result = ref<InternalApi["/api/poems/generate"]["post"]>();
 
-  async function generatePoem(file: File) {
+  async function generatePoem(file: File, locale: String, mode: String) {
     loading.value = true;
     result.value = undefined;
 
     try {
-      const mode = route.query.mode;
-
       const image = await toDataURL(file);
       const poem = await $fetch("/api/poems/generate", {
         method: "post",
-        query: { mode },
+        query: { mode, locale },
         body: { image },
       });
 

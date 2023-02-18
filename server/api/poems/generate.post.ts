@@ -1,3 +1,6 @@
+import type { Mood } from "@/constants/moods";
+import type { Locale } from "@/constants/locales";
+
 import { GeneratePoemSchema } from "@/server/validators/GeneratePoem";
 import { annotateImage } from "@/server/services/Vision";
 import { createCompletion } from "@/server/services/OpenAi";
@@ -5,9 +8,17 @@ import { logger } from "@/server/logger";
 import { getRandomAuthors } from "@/server/services/Authors";
 import { processImage } from "@/server/utils/image";
 
-const MODES: Record<string, string> = {
+const MODES: Record<Mood, string> = {
   erotic: "An erotic",
   romantic: "A romantic",
+  melancholic: "A melancholic",
+  fun: "A fun",
+  default: "A",
+};
+
+const LANGS: Record<Locale, string> = {
+  es: "Spanish",
+  en: "English",
 };
 
 export default defineEventHandler(async (event) => {
@@ -25,9 +36,16 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const mode = typeof query.mode === "string" ? query.mode : undefined;
+  let locale: Locale = "es";
+  let mode: Mood = "default";
 
-  logger.info({ mode }, "generatePoem");
+  if (typeof query.locale === "string" && query.locale in LANGS) {
+    locale = query.locale as Locale;
+  }
+
+  if (typeof query.mode === "string" && query.mode in MODES) {
+    mode = query.mode as Mood;
+  }
 
   const parse = await GeneratePoemSchema.safeParseAsync(body);
   if (!parse.success) {
@@ -59,19 +77,15 @@ export default defineEventHandler(async (event) => {
   );
 
   const author = getRandomAuthors();
-  const poemPrompt: string[] = [];
-
-  if (mode && mode in MODES) {
-    poemPrompt.push(MODES[mode]);
-  } else {
-    poemPrompt.push("A");
-  }
+  const poemPrompt: string[] = [MODES[mode]];
 
   poemPrompt.push(
-    `poem in Spanish written by ${author.join(", ")} inspired by:`
+    `poem in ${LANGS[locale]} written by ${author.join(", ")} inspired by:`
   );
   poemPrompt.push(keywords.join(", "));
   poemPrompt.push("\n");
+
+  logger.info({ mode, locale, keywords, author }, "generatePoem");
 
   const poem = await createCompletion(poemPrompt.join(" "), {
     temperature: 0.8,
