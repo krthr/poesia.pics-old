@@ -1,9 +1,6 @@
 <template>
   <div>
-    <select
-      v-model="locale"
-      class="select select-bordered absolute bottom-2 right-2"
-    >
+    <select v-model="locale" class="select select-bordered bottom-2 right-2">
       <option v-for="locale in LOCALES" :value="locale">
         {{ LOCALES_NAMES[locale] }}
       </option>

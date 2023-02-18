@@ -2,6 +2,8 @@
   <footer
     class="footer footer-center p-8 pb-6 bg-primary text-primary-content bottom-0"
   >
+    <AppLangSelector />
+
     <div>
       <a
         href="https://www.buymeacoffee.com/wilsontovar"
@@ -14,6 +16,7 @@
         />
       </a>
     </div>
+
     <div>
       <p class="font-bold inline-flex items-center">
         {{ $t("made_with") }}

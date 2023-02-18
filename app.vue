@@ -5,7 +5,6 @@
     <LazyAppPoem v-if="appStore.result" />
 
     <AppFooter />
-    <LangSelector />
   </div>
 </template>
 
