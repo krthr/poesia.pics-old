@@ -41,8 +41,6 @@
 <script lang="ts" setup>
 import { Icon } from "@iconify/vue";
 
-const { locale } = useI18n();
-
 const socialLinks = [
   {
     label: "Instagram de Wilson",

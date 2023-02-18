@@ -29,7 +29,6 @@ import { Icon } from "@iconify/vue";
 import { logEvent } from "@/utils/gtag";
 import LogRocket from "logrocket";
 
-const { locale } = useI18n();
 const downloading = ref(false);
 
 async function downloadImage() {
