@@ -17,11 +17,7 @@
     <div>
       <p class="font-bold inline-flex items-center">
         Hecho con
-        <SvgIcon
-          class="w-4 h-4 text-red-700 mx-1"
-          :path="mdiHeart"
-          type="mdi"
-        />
+        <Icon class="w-4 h-4 text-red-700 mx-1" icon="ph:heart-fill" />
         por Wilson Tovar
       </p>
       <p>Copyright © 2023 - All right reserved</p>
@@ -29,13 +25,13 @@
     <div>
       <div class="grid grid-flow-col gap-4">
         <a
-          v-for="link in socialLinks"
-          :key="link.href"
-          :href="link.href"
-          :aria-label="link.label"
+          v-for="{ icon, href, label } in socialLinks"
+          :key="href"
+          :href="href"
+          :aria-label="label"
           target="_blank"
         >
-          <SvgIcon :path="link.icon" type="mdi" />
+          <Icon class="w-6 h-6" :icon="icon" />
         </a>
       </div>
     </div>
@@ -43,35 +39,27 @@
 </template>
 
 <script lang="ts" setup>
-// @ts-ignore
-import SvgIcon from "@jamescoyle/vue-icon";
-import {
-  mdiInstagram,
-  mdiTwitter,
-  mdiGithub,
-  mdiLinkedin,
-  mdiHeart,
-} from "@mdi/js";
+import { Icon } from "@iconify/vue";
 
 const socialLinks = [
   {
     label: "Instagram de Wilson",
-    icon: mdiInstagram,
+    icon: "ph:instagram-logo-fill",
     href: "https://instagram.com/wilson__tovar",
   },
   {
     label: "GitHub de Wilson",
-    icon: mdiGithub,
+    icon: "ph:github-logo-fill",
     href: "https://github.com/krthr",
   },
   {
     label: "Twitter de Wilson",
-    icon: mdiTwitter,
+    icon: "ph:twitter-logo-fill",
     href: "https://twitter.com/_krthr",
   },
   {
     label: "LinkedIn de Wilson",
-    icon: mdiLinkedin,
+    icon: "ph:linkedin-logo-fill",
     href: "https://linkedin.com/in/wilsontovar",
   },
 ];

@@ -16,7 +16,7 @@
         :disabled="downloading"
         @click="downloadImage()"
       >
-        <SvgIcon :path="mdiDownload" type="mdi" class="w-5 h-5" />
+        <Icon class="w-5 h-5" icon="ph:download" />
         <span>Descargar poema</span>
       </button>
     </div>
@@ -24,9 +24,7 @@
 </template>
 
 <script lang="ts" setup>
-// @ts-ignore
-import SvgIcon from "@jamescoyle/vue-icon";
-import { mdiDownload } from "@mdi/js";
+import { Icon } from "@iconify/vue";
 
 import { logEvent } from "@/utils/gtag";
 import LogRocket from "logrocket";

@@ -1,7 +1,7 @@
 <template>
   <p class="text-sm font-serif inline-flex items-center italic">
-    <SvgIcon :path="mdiRobotLoveOutline" type="mdi" class="w-4 h-4" />
-    <span class="ml-2">poesía.pics</span>
+    <Icon class="w-5 h-5" icon="ph:heart" />
+    <span class="ml-2">https://poesia.pics</span>
     <span class="mx-2 font-bold text-lg"> ⋅ </span>
     <span>
       {{ appStore.result!.generatedAtLabel }}
@@ -10,9 +10,7 @@
 </template>
 
 <script lang="ts" setup>
-// @ts-ignore
-import SvgIcon from "@jamescoyle/vue-icon";
-import { mdiRobotLoveOutline } from "@mdi/js";
+import { Icon } from "@iconify/vue";
 import { useAppStore } from "@/stores/appStore";
 
 const appStore = useAppStore();
