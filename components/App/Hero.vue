@@ -28,30 +28,21 @@
 
           <div class="space-x-1 space-y-1">
             <button
-              v-for="mood in MOODS"
-              :key="mood"
-              :class="[
-                'btn btn-sm btn-outline gap-2',
-                'hover:bg-' + MoodsButtons[mood].color,
-                'hover:border-' + MoodsButtons[mood].color,
-
-                ...(selectedMood === mood
-                  ? ['font-bold text-white', 'bg-' + MoodsButtons[mood].color]
-                  : [
-                      'border-' + MoodsButtons[mood].color,
-                      'text-' + MoodsButtons[mood].color,
-                    ]),
-              ]"
-              @click="selectedMood = mood"
+              v-for="{ color, icon, key } in MOODS"
+              :key="key"
+              :class="{
+                'btn btn-sm btn-outline gap-2': true,
+                [`text-${color} border-${color} hover:bg-${color} hover:border-${color}`]: true,
+                [`fond-bold text-white bg-${color}`]: selectedMood === key,
+                [`border-${color} text-${color}`]: selectedMood !== key,
+              }"
+              @click="selectedMood = key"
             >
-              <span>{{ $t(`moods.${mood}`) }}</span>
+              <span>{{ $t(`moods.${key}`) }}</span>
               <span>
                 <Icon
                   class="w-4 h-4"
-                  :icon="
-                    MoodsButtons[mood].icon +
-                    (selectedMood === mood ? '-fill' : '-bold')
-                  "
+                  :icon="icon + (selectedMood === key ? '-fill' : '-bold')"
                 />
               </span>
             </button>
@@ -97,43 +88,6 @@ const { locale } = useI18n();
 const appStore = useAppStore();
 
 const selectedMood = ref<Mood>("default");
-const MoodsButtons: Record<
-  Mood,
-  {
-    icon: string;
-    class: string;
-    color: string;
-  }
-> = {
-  default: {
-    icon: "ph:robot",
-    color: "gray-700",
-    class:
-      "border-gray-700 text-gray-700 hover:border-gray-700 hover:bg-gray-700",
-  },
-  erotic: {
-    icon: "ph:fire",
-    color: "orange-500",
-    class:
-      "border-orange-500 text-orange-500 hover:border-orange-500 hover:bg-orange-500",
-  },
-  fun: {
-    icon: "ph:mask-happy",
-    color: "emerald-500",
-    class:
-      "border-emerald-500 text-emerald-500 hover:border-emerald-500 hover:bg-emerald-500",
-  },
-  melancholic: {
-    icon: "ph:mask-sad",
-    color: "sky-900",
-    class: "border-sky-900 text-sky-900 hover:border-sky-900 hover:bg-sky-900",
-  },
-  romantic: {
-    icon: "ph:heart",
-    color: "red-500",
-    class: "border-red-500 text-red-500 hover:border-red-500 hover:bg-red-500",
-  },
-};
 
 function selectFile() {
   const input = document.querySelector<HTMLInputElement>("#file")!;
