@@ -2,7 +2,7 @@
   <div class="mt-8 text-center w-full flex flex-col justify-between">
     <div class="mb-6">
       <h2 class="text-xl">
-        Comparte tu poema usando el hashtag
+        {{ $t("share_your_poem") }}
         <span class="font-bold">#PoesiaPics</span>
       </h2>
     </div>
@@ -17,7 +17,7 @@
         @click="downloadImage()"
       >
         <Icon class="w-5 h-5" icon="ph:download" />
-        <span>Descargar poema</span>
+        <span>{{ $t("download_poem") }}</span>
       </button>
     </div>
   </div>
@@ -29,6 +29,7 @@ import { Icon } from "@iconify/vue";
 import { logEvent } from "@/utils/gtag";
 import LogRocket from "logrocket";
 
+const { locale } = useI18n();
 const downloading = ref(false);
 
 async function downloadImage() {
