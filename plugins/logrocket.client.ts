@@ -1,5 +1,7 @@
 import LogRocket from "logrocket";
 
-export default defineNuxtPlugin((nuxtApp) => {
-  LogRocket.init("poesiapics/poesiapics");
+export default defineNuxtPlugin(() => {
+  if (process.env.NODE_ENV === "production") {
+    LogRocket.init("poesiapics/poesiapics");
+  }
 });
