@@ -2,7 +2,8 @@
   <div class="w-full min-h-screen flex flex-col">
     <AppHero />
 
-    <LazyAppPoem v-if="appStore.result" />
+    <div v-show="appStore.result" class="divider"></div>
+    <LazyAppPoem v-if="appStore.result" :poem="appStore.result" />
 
     <AppFooter />
   </div>
@@ -10,7 +11,6 @@
 
 <script lang="ts" setup>
 import { useAppStore } from "@/stores/appStore";
-import LangSelector from "./components/App/LangSelector.vue";
 
 const appStore = useAppStore();
 

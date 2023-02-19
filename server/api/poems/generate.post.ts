@@ -21,7 +21,7 @@ const LANGS: Record<Locale, string> = {
   en: "English",
 };
 
-export default defineEventHandler(async (event) => {
+const handler = defineEventHandler(async (event) => {
   let body;
   let query;
 
@@ -131,3 +131,7 @@ export default defineEventHandler(async (event) => {
     signature,
   };
 });
+
+export type GeneratedPoem = Awaited<ReturnType<typeof handler>>;
+
+export default handler;

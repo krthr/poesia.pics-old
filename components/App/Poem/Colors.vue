@@ -1,7 +1,7 @@
 <template>
   <div class="flex rounded-lg w-full mt-4">
     <div
-      v-for="({color, pixelFraction}, index) in appStore.result!.colors"
+      v-for="({ color, pixelFraction }, index) in poem.colors"
       :key="index"
       :style="{
         width: (pixelFraction || 0) * 100 + '%',
@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useAppStore } from "@/stores/appStore";
+import type { GeneratedPoem } from "@/server/api/poems/generate.post";
 
-const appStore = useAppStore();
+defineProps<{ poem: GeneratedPoem }>();
 </script>

@@ -1,4 +1,5 @@
-import type { InternalApi } from "nitropack";
+import type { GeneratedPoem } from "@/server/api/poems/generate.post";
+
 import LogRocket from "logrocket";
 import { defineStore } from "pinia";
 import { logEvent } from "@/utils/gtag";
@@ -6,7 +7,7 @@ import { logEvent } from "@/utils/gtag";
 export const useAppStore = defineStore("app", () => {
   const loading = ref(false);
   const saving = ref(false);
-  const result = ref<InternalApi["/api/poems/generate"]["post"]>();
+  const result = ref<GeneratedPoem>();
 
   async function generatePoem(file: File, locale: String, mode: String) {
     loading.value = true;

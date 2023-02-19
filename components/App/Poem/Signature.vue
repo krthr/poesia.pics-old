@@ -4,14 +4,14 @@
     <span class="ml-2">https://poesia.pics</span>
     <span class="mx-2 font-bold text-lg"> ⋅ </span>
     <span>
-      {{ appStore.result!.generatedAtLabel }}
+      {{ poem.generatedAtLabel }}
     </span>
   </p>
 </template>
 
 <script lang="ts" setup>
 import { Icon } from "@iconify/vue";
-import { useAppStore } from "@/stores/appStore";
+import type { GeneratedPoem } from "@/server/api/poems/generate.post";
 
-const appStore = useAppStore();
+defineProps<{ poem: GeneratedPoem }>();
 </script>
