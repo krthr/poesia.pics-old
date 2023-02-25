@@ -17,7 +17,7 @@
     "@types/node": "^18.11.18",
     "@types/sharp": "^0.31.1",
     "daisyui": "^2.50.0",
-    "nuxt": "^3.1.1"
+    "nuxt": "^3.2.2"
   },
   "dependencies": {
     "@google-cloud/vision": "^3.1.0",
@@ -30,6 +30,7 @@
     "openai": "^3.1.0",
     "pinia": "^2.0.30",
     "pino": "^8.10.0",
+    "puppeteer": "^19.7.2",
     "sharp": "^0.31.3",
     "zod": "^3.20.6"
   }
