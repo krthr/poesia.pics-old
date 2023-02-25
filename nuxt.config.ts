@@ -1,6 +1,7 @@
 const isProd = process.env.NODE_ENV === "production";
-const es = require('./lang/es');
-const en = require('./lang/en');
+
+import en from "./lang/en";
+import es from "./lang/es";
 
 const googleAnalyticsHtml = `
 window.dataLayer = window.dataLayer || [];
@@ -50,25 +51,27 @@ export default defineNuxtConfig({
     "@kevinmarrec/nuxt-pwa",
     "@nuxtjs/tailwindcss",
     "@pinia/nuxt",
-    '@nuxtjs/i18n',
+    "@nuxtjs/i18n",
   ],
 
   i18n: {
-    locales: ['en', 'es'], // used in URL path prefix
-    defaultLocale: 'es', 
+    locales: ["en", "es"], // used in URL path prefix
+    defaultLocale: "es",
     vueI18n: {
       legacy: false,
-      locale: 'es',
+      locale: "es",
       messages: {
         en: en,
-        es: es
-      }
-    }
+        es: es,
+      },
+    },
   },
 
   runtimeConfig: {
     openaiApiKey: "",
     openaiModel: "text-curie-001",
+
+    envVercelUrl: "http://localhost:3000",
 
     googleApplicationCredentialsJson: "",
 

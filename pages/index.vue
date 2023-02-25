@@ -1,11 +1,11 @@
 <template>
   <div class="w-full min-h-screen flex flex-col">
-    <AppHero />
+    <IndexHero />
 
     <div v-show="appStore.result" class="divider"></div>
-    <LazyAppPoem v-if="appStore.result" :poem="appStore.result" />
+    <LazyPoem v-if="appStore.result" :poem="appStore.result" />
 
-    <AppFooter />
+    <IndexFooter />
   </div>
 </template>
 
