@@ -23,14 +23,11 @@
     "@google-cloud/vision": "^3.1.0",
     "@pinia/nuxt": "^0.4.6",
     "argon2": "^0.30.3",
-    "firebase-admin": "^11.5.0",
-    "html-to-image": "^1.11.11",
     "lodash-es": "^4.17.21",
     "logrocket": "^3.0.1",
     "openai": "^3.1.0",
     "pinia": "^2.0.30",
     "pino": "^8.10.0",
-    "puppeteer": "^19.7.2",
     "sharp": "^0.31.3",
     "zod": "^3.20.6"
   }
