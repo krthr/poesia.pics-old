@@ -30,10 +30,12 @@ export async function generatePoem(imagePath: string, lang: Locale = 'es', mood:
   const author = getRandomAuthors(lang, mood).join(', ')
 
   const promp = [
-    `You are a poet with similar style to `,
+    MODES[mood],
+    'poem',
+    `in ${LANGS[lang]}`,
+    'written by',
     author,
-    `Write ${MODES[mood]} prose poem`,
-    `of maximum two paragraphs in ${LANGS[lang]}, inspired by`,
+    'inspired by',
     caption,
   ].join(' ')
 

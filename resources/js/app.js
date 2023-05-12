@@ -7,7 +7,7 @@ window.onload = () => {
 
   selectImageBtn.onclick = () => imageInput.click()
 
-  form.onchange = (ev) => {
+  imageInput.onchange = (ev) => {
     const files = ev.target.files
     const file = files[0]
 

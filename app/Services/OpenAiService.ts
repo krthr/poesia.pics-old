@@ -34,8 +34,6 @@ export async function createCompletion(prompt: string, options: Options = {}) {
       ...options,
     })
 
-    console.log(response.data)
-
     const poem = response.data.choices.at(0)?.message?.content.trim()
     if (!poem) {
       throw new Error('Poema vacío.')
