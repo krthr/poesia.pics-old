@@ -43,6 +43,6 @@ export default class Poem extends BaseModel {
 
   @beforeCreate()
   public static createId(poem: Poem) {
-    poem.id = nanoid(10)
+    poem.id = nanoid(21)
   }
 }
