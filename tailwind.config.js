@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        serif: ['Lora', ...defaultTheme.fontFamily.serif],
+        serif: ['Libre Baskerville', ...defaultTheme.fontFamily.serif],
         sans: ['Nunito Sans', ...defaultTheme.fontFamily.sans],
       },
     },
