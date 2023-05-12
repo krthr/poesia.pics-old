@@ -1,0 +1,23 @@
+{
+  "title": {
+    "your_images_turn": "Tus imágenes se vuelven",
+    "poetry": "poesía"
+  },
+  "description": "Con Inteligencia Artificial convertimos tus fotografías en poemas. ¡Es gratis y respetamos tu privacidad!",
+  "form": {
+    "poem_emotion": "Emoción del poema",
+    "better_results": "Obtendrás mejores resultados en fotografías de paisajes y retratos",
+    "upload_photo": "Subir foto"
+  },
+  "footer": {
+    "made_with": "Hecho con",
+    "by_wilson": "por Wilson Tovar"
+  },
+  "moods": {
+    "default": "Neutral 🤖",
+    "romantic": "Romántico ❤️‍🔥",
+    "erotic": "Erótico 🥵",
+    "melancholic": "Melancólico 😥",
+    "fun": "Divertido 😂"
+  }
+}

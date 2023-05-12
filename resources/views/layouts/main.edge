@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="pastel">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="poesía.pics - Una foto, un poema">
+  <meta name="theme-color" content="#dd2d44">
+
+  <link rel="icon" href="/icons/64x64.aa5b2829.png" data-h-2c9d455="">
+  <link rel="apple-touch-icon" href="/icons/512x512.maskable.aa5b2829.png" sizes="512x512" data-h-bc1de16="">
+
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/app.css') }}">
+
+  <link rel="manifest" href="/manifest.json">
+  <meta property="og:site_name" content="poesia.pics">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es">
+  <meta property="og:title" content="poesía.pics - Una foto, un poema">
+  <meta name="description" content="Convierte tus fotografías en poemas usando Inteligencia Artifical.">
+  <meta property="og:description" content="Convierte tus fotografías en poemas usando Inteligencia Artifical.">
+  <meta property="og:image" content="https://poesia.pics/icon.png">
+  <meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="bg-base-200">
+
+  @!component('components/topbar')
+
+  <main class="flex min-h-screen w-full flex-col items-center justify-center pt-20">
+    <div class="flex flex-1 max-w-xl px-5 pb-20">
+      @!section('main')
+    </div>
+
+    @!component('components/footer')
+  </main>
+
+  @!section('scripts')
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    
+    gtag('config', 'G-K40DJ3THNZ');
+  </script>
+
+</body>
+
+</html>

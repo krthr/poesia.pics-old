@@ -1,5 +1,11 @@
 import { schema, CustomMessages } from '@ioc:Adonis/Core/Validator'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import { LOCALES } from 'App/Constants/Locales'
+import { MOODS } from 'App/Constants/Moods'
+
+const extnames = ['jpg', 'jpeg', 'png', 'webp', 'avif'].reduce((arr, ext) => {
+  return [...arr, ext, ext.toUpperCase()]
+}, [])
 
 export default class StorePoemValidator {
   constructor(protected ctx: HttpContextContract) {}
@@ -23,7 +29,15 @@ export default class StorePoemValidator {
    *     ])
    *    ```
    */
-  public schema = schema.create({})
+  public schema = schema.create({
+    image: schema.file({
+      extnames,
+      size: '10mb',
+    }),
+
+    mood: schema.enum.optional(MOODS),
+    lang: schema.enum.optional(LOCALES),
+  })
 
   /**
    * Custom messages for validation failures. You can make use of dot notation `(.)`

@@ -1,0 +1,96 @@
+{
+  "name": "poesía.pics",
+  "short_name": "poesía.pics",
+  "description": "Con Inteligencia Artificial convertimos tus fotografías en poemas. ¡Es gratis y respetamos tu privacidad!",
+  "lang": "es",
+  "start_url": "/?standalone=true",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#dd2d44",
+  "icons": [
+    {
+      "src": "/icons/64x64.aa5b2829.png",
+      "type": "image/png",
+      "sizes": "64x64",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/64x64.maskable.aa5b2829.png",
+      "type": "image/png",
+      "sizes": "64x64",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/120x120.aa5b2829.png",
+      "type": "image/png",
+      "sizes": "120x120",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/120x120.maskable.aa5b2829.png",
+      "type": "image/png",
+      "sizes": "120x120",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/144x144.aa5b2829.png",
+      "type": "image/png",
+      "sizes": "144x144",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/144x144.maskable.aa5b2829.png",
+      "type": "image/png",
+      "sizes": "144x144",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/152x152.aa5b2829.png",
+      "type": "image/png",
+      "sizes": "152x152",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/152x152.maskable.aa5b2829.png",
+      "type": "image/png",
+      "sizes": "152x152",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/192x192.aa5b2829.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/192x192.maskable.aa5b2829.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/384x384.aa5b2829.png",
+      "type": "image/png",
+      "sizes": "384x384",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/384x384.maskable.aa5b2829.png",
+      "type": "image/png",
+      "sizes": "384x384",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/512x512.aa5b2829.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/512x512.maskable.aa5b2829.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    }
+  ]
+}

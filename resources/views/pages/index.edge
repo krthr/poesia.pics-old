@@ -1,0 +1,53 @@
+@layout('layouts/main')
+
+@section('main')
+<div class="flex flex-col items-center justify-center">
+  <h1
+    class="text-black bg-clip-text text-center font-display text-4xl font-bold drop-shadow-sm md:text-7xl md:leading-[5rem]">
+    {{ t('title.your_images_turn') }} <span class="italic font-serif">{{ t('title.poetry') }}</span>
+  </h1>
+
+  <p class="my-7 text-center text-gray-500 md:text-xl">
+    {{ t('description') }}
+  </p>
+
+  <div>
+    @if(flashMessages.has('error'))
+    <div class="alert alert-error">
+      <div>
+        @svg('ph:x-circle', { class: 'w-6 h-6' })
+        <span>{{ flashMessages.get('error') }}</span>
+      </div>
+    </div>
+    @end
+
+    <div class="flex items-center justify-center mt-6 space-x-4">
+      <div>
+        <select class="select select-bordered" name="mood" id="mood" form="form">
+          @each(mood in MOODS_ICONS)
+          <option value="{{mood.key}}">{{ t(`moods.${mood.key}`) }}</option>
+          @end
+        </select>
+      </div>
+
+      <button class="btn btn-primary gap-3" id="upload">
+        {{ t('form.upload_photo') }}
+        @svg('ph:upload', { class: 'w-6 h-6' })
+      </button>
+    </div>
+
+    <p class="mt-2 text-center text-sm text-gray-500">
+      {{ t('form.better_results') }}
+    </p>
+  </div>
+
+
+  <form action="/" method="post" enctype="multipart/form-data" name="form">
+    <input id="image" name="image" type="file" accept="image/jpg,image/png,image/webp,image/jpeg" hidden />
+  </form>
+</div>
+@end
+
+@section('scripts')
+<script src="{{ asset('assets/app.js') }}"></script>
+@end

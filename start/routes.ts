@@ -20,6 +20,6 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.get('/', async () => {
-  return { hello: 'world' }
-})
+Route.get('/', 'PoemsController.index')
+Route.post('/', 'PoemsController.store')
+Route.get('/poem/:id', 'PoemsController.show')
