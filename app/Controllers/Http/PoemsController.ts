@@ -24,6 +24,11 @@ export default class PoemsController {
       return response.redirect('/')
     }
 
+    const diff = poem.createdAt.diffNow('days')
+    if (diff.days > 10) {
+      return response.redirect('/')
+    }
+
     return view.render('pages/poem', { poem })
   }
 }

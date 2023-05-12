@@ -3,7 +3,12 @@
     "your_images_turn": "Tus imágenes se vuelven",
     "poetry": "poesía"
   },
-  "description": "Con Inteligencia Artificial convertimos tus fotografías en poemas. ¡Es gratis y respetamos tu privacidad!",
+  "description": {
+    "short": "Con Inteligencia Artificial convertimos tus fotografías en poemas.",
+    "tooltip": "Las imágenes son almacenadas por 10 días y solo pueden leer el poema quienes tengan acceso al enlace.",
+    "free": "¡Es gratis y",
+    "privacy": "respetamos tu privacidad!"
+  },
   "form": {
     "poem_emotion": "Emoción del poema",
     "better_results": "Obtendrás mejores resultados en fotografías de paisajes y retratos",

@@ -3,7 +3,12 @@
     "your_images_turn": "Your images become",
     "poetry": "poetry"
   },
-  "description": "With Artificial Intelligence we turn your photos into poems, it's free and we respect your privacy!",
+  "description": {
+    "short": "With Artificial Intelligence we turn your photos into poems.",
+    "tooltip": "The images are stored for 10 days and only those who have access to the link can read the poem.",
+    "free": "It's free &",
+    "privacy": "we respect your privacy!"
+  },
   "form": {
     "poem_emotion": "Poem emotion",
     "better_results": "You will obtain better results in landscape and portrait photography",

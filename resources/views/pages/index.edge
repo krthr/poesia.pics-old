@@ -8,7 +8,13 @@
   </h1>
 
   <p class="my-7 text-center text-gray-500 md:text-xl">
-    {{ t('description') }}
+    <span>{{ t('description.short') }}</span>
+    <span>{{ t('description.free') }}</span>
+    <span class="tooltip tooltip-top tooltip-primary" data-tip="{{ t('description.tooltip') }}">
+      <span class="underline decoration-dotted">
+        {{ t('description.privacy') }}
+      </span>
+    </span>
   </p>
 
   <div>
