@@ -7,7 +7,7 @@ async function getPage() {
   if (!browser) {
     Logger.info('opening browser')
     browser = await launch({
-      executablePath: '/usr/bin/chromium-browser',
+      executablePath: process.env.CHROME_BIN,
       args: ['--disable-gpu'],
     })
   }
