@@ -24,5 +24,9 @@
     "erotic": "Erótico 🥵",
     "melancholic": "Melancólico 😥",
     "fun": "Divertido 😂"
+  },
+  "poem": {
+    "share_your_poem": "Comparte tu poema usando el hashtag",
+    "download_poem": "Descargar poema"
   }
 }

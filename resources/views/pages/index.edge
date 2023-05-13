@@ -27,9 +27,9 @@
     </div>
     @end
 
-    <div class="flex items-center justify-center mt-6 space-x-4">
-      <div>
-        <select class="select select-bordered" name="mood" id="mood">
+    <div class="flex items-center justify-center mt-6 space-x-4 flex-wrap">
+      <div class="flex-1">
+        <select class="select select-bordered w-full" name="mood" id="mood">
           @each(mood in MOODS_ICONS)
           <option value="{{mood.key}}">{{ t(`moods.${mood.key}`) }}</option>
           @end
@@ -52,5 +52,5 @@
 @end
 
 @section('scripts')
-<script src="{{ asset('assets/app.js') }}"></script>
+<script defer src="{{ asset('assets/app.js') }}"></script>
 @end

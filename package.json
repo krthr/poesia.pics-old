@@ -76,6 +76,7 @@
     "alpinejs": "^3.12.1",
     "daisyui": "^2.51.6",
     "edge-iconify": "^1.0.2-0",
+    "html-to-image": "^1.11.11",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
     "lodash.samplesize": "^4.2.0",
@@ -90,5 +91,8 @@
     "sharp": "^0.32.1",
     "source-map-support": "^0.5.21",
     "sqlite3": "^5.1.6"
-  }
+  },
+  "browserslist": [
+    "last 2 versions"
+  ]
 }

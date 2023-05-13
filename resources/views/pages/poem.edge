@@ -2,30 +2,55 @@
 
 @section('main')
 
-<div class="max-w-md">
-  {{--  <div class="divider"></div>  --}}
+<div class="w-full">
+  <div class="max-w-md p-2" id="poem">
+    {{-- <div class="divider"></div> --}}
 
-  <img class="w-full h-auto rounded-md" alt="{{poem.poem}}" src="{{poem.image}}" />
+    <img class="w-full h-auto rounded-md" alt="{{poem.poem}}" src="{{poem.image}}" />
 
-  <p class="mb-10 mt-5 text-lg font-serif font-light italic text-center">{{ poem.caption }}</p>
+    <p id="caption" class="mb-10 mt-5 text-lg font-serif font-light italic text-center">{{ poem.caption }}</p>
 
-  <p class="whitespace-pre-wrap font-serif my-5 text-lg">{{ poem.poem }}</p>
+    <p class="whitespace-pre-wrap font-serif my-5 text-lg">{{ poem.poem }}</p>
 
-  <p class="text-sm my-5 font-serif">
-    Un poema <span>{{ t(`moods.${poem.mood}`) }}</span> inspirado en {{ poem.author }}
-  </p>
-
-
-
-  <p class="text-sm inline-flex items-center font-serif">
-    {{-- @svg('ph:heart', { class: 'w-5 h-5' }) --}}
-    <span class="italic">poesia.pics</span>
-    <span class="mx-2 font-bold text-lg"> ⋅ </span>
-    <span>
-      {{ poem.createdAtLabel }}
-    </span>
-  </p>
+    <p class="text-sm my-5 font-serif">
+      Un poema <span>{{ t(`moods.${poem.mood}`) }}</span> inspirado en {{ poem.author }}
+    </p>
 
 
+
+    <p class="text-sm inline-flex items-center font-serif">
+      {{-- @svg('ph:heart', { class: 'w-5 h-5' }) --}}
+      <span class="italic">poesia.pics</span>
+      <span class="mx-2 font-bold text-lg"> ⋅ </span>
+      <span>
+        {{ poem.createdAtLabel }}
+      </span>
+    </p>
+
+
+
+
+
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="text-center flex flex-col justify-between">
+    <h2 class="text-2xl mb-6">
+      {{ t('poem.share_your_poem') }}
+      <span class="font-bold">#PoesiaPics</span>
+    </h2>
+
+    <div>
+      <button class="btn btn-ghost btn-outline gap-2" id="download-poem">
+        @svg('ph:download', { class: 'w-5 h-5' })
+        {{ t('poem.download_poem') }}
+      </button>
+    </div>
+  </div>
 </div>
+@end
+
+@section('scripts')
+<script defer src="{{ asset('assets/poem.js') }}"></script>
 @end
