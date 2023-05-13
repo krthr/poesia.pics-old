@@ -8,7 +8,7 @@ export async function processImage(imgBuffer: Buffer) {
   try {
     Logger.info('processing image')
 
-    const buffer = await Sharp(imgBuffer).jpeg().resize(800, null).toBuffer()
+    const buffer = await Sharp(imgBuffer).jpeg().resize(800, null).withMetadata().toBuffer()
     const base64 = `data:image/jpeg;base64,` + buffer.toString('base64')
     // const colors = await NodeVibrant.from(buffer).getPalette()
 
