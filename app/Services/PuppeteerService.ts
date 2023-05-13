@@ -6,7 +6,10 @@ let browser: Browser | undefined
 async function getPage() {
   if (!browser) {
     Logger.info('opening browser')
-    browser = await launch({ headless: false })
+    browser = await launch({
+      executablePath: '/usr/bin/chromium-browser',
+      args: ['--disable-gpu'],
+    })
   }
 
   Logger.info('opening new page')
