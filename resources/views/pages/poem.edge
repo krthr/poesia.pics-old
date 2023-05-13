@@ -3,7 +3,7 @@
 @section('main')
 
 <div class="w-full">
-  <div class="max-w-md p-2" id="poem">
+  <div class="max-w-md" id="poem">
     {{-- <div class="divider"></div> --}}
 
     <img class="w-full h-auto rounded-md" alt="{{poem.poem}}" src="{{poem.image}}" />
@@ -42,15 +42,27 @@
     </h2>
 
     <div>
-      <button class="btn btn-ghost btn-outline gap-2" id="download-poem">
+      <a class="btn btn-ghost btn-outline gap-2" id="download-poem" href="/poem/{{poem.id}}/screenshot"
+        download="{{poem.caption}}.jpg">
         @svg('ph:download', { class: 'w-5 h-5' })
         {{ t('poem.download_poem') }}
-      </button>
+      </a>
     </div>
   </div>
 </div>
 @end
 
 @section('scripts')
-<script defer src="{{ asset('assets/poem.js') }}"></script>
+<script>
+  /** @type {HTMLAnchorElement} */
+  const downloadBtn = document.querySelector('#download-poem')
+
+  downloadBtn.onclick = () => {
+    downloadBtn.classList.add('loading')
+  }
+
+  downloadBtn.onload = () => {
+    downloadBtn.classList.remove('loading')
+  }
+</script>
 @end

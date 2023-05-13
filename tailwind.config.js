@@ -45,5 +45,7 @@ module.exports = {
     'hover:border-orange-500',
     'hover:border-sky-900',
     'hover:border-emerald-500',
+    'p-3',
+    'p-4',
   ],
 }

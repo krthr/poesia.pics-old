@@ -2,6 +2,7 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Poem from 'App/Models/Poem'
 import StorePoemValidator from 'App/Validators/StorePoemValidator'
 import { generatePoem } from 'App/Services/PoemsService'
+import { getScreenshot } from 'App/Services/PuppeteerService'
 
 export default class PoemsController {
   public async index({ view }: HttpContextContract) {
@@ -30,5 +31,27 @@ export default class PoemsController {
     }
 
     return view.render('pages/poem', { poem })
+  }
+
+  public async screenshot({ request, response, view }: HttpContextContract) {
+    const id = request.param('id')
+
+    const poem = await Poem.findBy('id', id)
+    if (!poem) {
+      return response.notFound()
+    }
+
+    const html = await view.render('pages/poem', { poem })
+    const file = await getScreenshot(html)
+
+    if (!file) {
+      return response.internalServerError()
+    }
+
+    const filename = `${poem.caption}.jpg`
+    response.header('Content-Disposition', `attachment; filename="${filename}"`)
+    response.header('Content-Type', 'image/jpeg')
+
+    return file
   }
 }
