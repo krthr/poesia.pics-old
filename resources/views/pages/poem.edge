@@ -44,13 +44,13 @@
       <span class="font-bold">#PoesiaPics</span>
     </h2>
 
-    <div>
+    {{--  <div>
       <a class="btn btn-ghost btn-outline gap-2" id="download-poem" href="/poem/{{poem.id}}/screenshot"
         download="{{poem.caption}}.jpg">
         @svg('ph:download', { class: 'w-5 h-5' })
         {{ t('poem.download_poem') }}
       </a>
-    </div>
+    </div>  --}}
   </div>
 </div>
 @end
@@ -62,10 +62,10 @@
 
   downloadBtn.onclick = () => {
     downloadBtn.classList.add('loading')
-  }
 
-  downloadBtn.onload = () => {
-    downloadBtn.classList.remove('loading')
+    setTimeout(() => {
+      downloadBtn.classList.remove('loading')
+    }, 5000)
   }
 </script>
 @end
