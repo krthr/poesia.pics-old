@@ -22,8 +22,8 @@ export async function getScreenshot(html: string) {
   const page = await getPage()
 
   try {
-    await page.setViewport({ width: 390, height: 844 })
-    await page.setContent(html, { waitUntil: 'domcontentloaded' })
+    await page.setViewport({ width: 500, height: 800 })
+    await page.setContent(html)
   } catch (error) {
     Logger.error(error)
 

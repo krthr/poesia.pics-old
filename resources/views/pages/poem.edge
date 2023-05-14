@@ -12,9 +12,7 @@
 
     <p class="whitespace-pre-wrap font-serif my-5 text-lg">{{ poem.poem }}</p>
 
-    <p class="text-sm my-5 font-serif">
-      Un poema <span>{{ t(`moods.${poem.mood}`) }}</span> inspirado en {{ poem.author }}
-    </p>
+
 
 
 
@@ -29,9 +27,14 @@
 
 
 
-
-
   </div>
+
+  <p>
+  <ul class="text-xs my-5 font-serif">
+    <li>Emoción: {{ t(`moods.${poem.mood}`) }}</li>
+    <li>Autores: {{ poem.author }}</li>
+  </ul>
+  </p>
 
   <div class="divider"></div>
 
