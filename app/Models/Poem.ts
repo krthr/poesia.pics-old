@@ -1,12 +1,29 @@
 import { DateTime } from 'luxon'
-import { BaseModel, beforeCreate, column, computed } from '@ioc:Adonis/Lucid/Orm'
+import {
+  BaseModel,
+  BelongsTo,
+  beforeCreate,
+  belongsTo,
+  column,
+  computed,
+} from '@ioc:Adonis/Lucid/Orm'
 import { nanoid } from 'nanoid'
+import User from './User'
 
 export default class Poem extends BaseModel {
   public static primaryKey = 'id'
 
   @column()
   public id: string
+
+  @column()
+  public userId?: number
+
+  @belongsTo(() => User)
+  public user: BelongsTo<typeof User>
+
+  @column()
+  public isPublic: boolean
 
   @column()
   public author: string

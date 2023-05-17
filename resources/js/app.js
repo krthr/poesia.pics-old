@@ -5,7 +5,9 @@ window.onload = () => {
   const imageInput = document.querySelector('#image')
   const selectImageBtn = document.querySelector('#upload')
 
-  selectImageBtn.onclick = () => imageInput.click()
+  selectImageBtn.onclick = () => {
+    imageInput.click()
+  }
 
   imageInput.onchange = (ev) => {
     const files = ev.target.files

@@ -7,10 +7,11 @@ module.exports = {
     extend: {
       fontFamily: {
         serif: ['Libre Baskerville', ...defaultTheme.fontFamily.serif],
-        sans: ['Nunito Sans', ...defaultTheme.fontFamily.sans],
+        sans: ['Instrument Sans', ...defaultTheme.fontFamily.sans],
       },
     },
   },
+
   plugins: [require('daisyui')],
 
   safelist: [
@@ -48,4 +49,18 @@ module.exports = {
     'p-3',
     'p-4',
   ],
+
+  daisyui: {
+    themes: [
+      {
+        pastel: {
+          ...require('daisyui/src/colors/themes')['[data-theme=pastel]'],
+          '--btn-text-case': 'none',
+          '--rounded-btn': '0.5rem',
+          '--rounded-box': '0.5rem',
+          '--padding-card': '1rem',
+        },
+      },
+    ],
+  },
 }

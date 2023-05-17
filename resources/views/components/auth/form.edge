@@ -1,0 +1,27 @@
+<form action="{{action}}" method="POST">
+  {{ csrfField() }}
+
+  <div class="form-control">
+    <input name="username" class="input input-bordered w-full" type="text" placeholder="Usuario" minlength="3" required
+      value="{{flashMessages.get('username') || ''}}">
+  </div>
+
+  <div class="form-control mt-4">
+    <input name="password" class="input input-bordered w-full" type="password" placeholder="Contraseña" minlength="3"
+      required value="{{flashMessages.get('password') || ''}}">
+  </div>
+
+  {{-- <div class="form-control mt-4">
+    <label class="label">
+      <span class="label-text">Mantener sesión iniciada</span>
+      <input type="checkbox" class="checkbox" name="remember_me" />
+    </label>
+  </div> --}}
+
+  <div class="card-actions justify-center mt-4">
+    <button class="btn btn-primary w-full gap-3">
+      {{ btnText }}
+      @svg('ph:arrow-right', {class: 'w-5 h-5'})
+    </button>
+  </div>
+</form>

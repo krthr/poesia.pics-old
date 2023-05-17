@@ -7,7 +7,7 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="poesía.pics - Una foto, un poema">
   <meta name="theme-color" content="#dd2d44">
-  <title>poesía.pics - Una foto, un poema</title>
+  <title>{{ title }} - poesia.pics</title>
 
   <link rel="icon" href="/icons/64x64.aa5b2829.png" data-h-2c9d455="">
   <link rel="apple-touch-icon" href="/icons/512x512.maskable.aa5b2829.png" sizes="512x512" data-h-bc1de16="">
@@ -27,14 +27,14 @@
 
 <body class="bg-base-200">
 
-  @!component('components/topbar')
+  @include('partials/topbar')
 
-  <main class="flex min-h-screen w-full flex-col items-center justify-center pt-20">
-    <div class="flex flex-1 max-w-xl px-5 pb-20">
+  <main class=" flex min-h-screen w-full flex-col items-center justify-center pt-20">
+    <div class="flex flex-1 {{ full_width_layout ? 'w-full' : 'max-w-2xl' }} p-5 pb-20">
       @!section('main')
     </div>
 
-    @!component('components/footer')
+    @include('partials/footer')
   </main>
 
   @!section('scripts')
@@ -43,7 +43,6 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    
     gtag('config', 'G-K40DJ3THNZ');
   </script>
 

@@ -1,0 +1,28 @@
+@layout('layouts/main')
+@set('full_width_layout', true)
+
+@section('main')
+<div class="flex items-center justify-center w-full">
+
+  <div class="card shadow-2xl border w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
+    <div class="card-body">
+      <h1 class="card-title mb-4">
+        Entrar a mi cuenta
+      </h1>
+
+      @!component('components/error-alert')
+
+      @!component('components/auth/form', {action: '/login', btnText: 'Iniciar sesión'})
+
+      <div class="divider">
+        ¿No tienes cuenta?
+      </div>
+
+      <a href="/join" class="btn btn-secondary">
+        Crear cuenta
+      </a>
+    </div>
+  </div>
+
+</div>
+@end

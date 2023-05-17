@@ -1,0 +1,25 @@
+@layout('layouts/main')
+@set('full_width_layout', true)
+@set('topbarSubtitle', {
+href: '/explore',
+text: 'Explorar'
+})
+
+@section('main')
+<div class="w-full">
+
+  <div class="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    @each(poem in poems)
+    @!component('components/poem-card', {poem})
+    @end
+  </div>
+
+  <div class="mt-10 justify-center flex">
+    <div class="btn-group">
+      <a class="btn" disabled="{{ poems.meta }}">«</a>
+      <span class="btn">Página {{poems.currentPage}}</span>
+      <a class="btn" disables="{{ JSON.stringify(poems.meta) }}">»</a>
+    </div>
+  </div>
+</div>
+@end

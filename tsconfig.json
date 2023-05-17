@@ -11,7 +11,10 @@
     "outDir": "build",
     "rootDir": "./",
     "sourceMap": true,
-    "lib": ["ES2020", "dom"],
+    "lib": [
+      "ES2020",
+      "dom"
+    ],
     "paths": {
       "App/*": [
         "./app/*"
@@ -33,7 +36,9 @@
       "@adonisjs/view",
       "@adonisjs/lucid",
       "@adonisjs/i18n",
-      "@adonisjs/session"
+      "@adonisjs/session",
+      "@adonisjs/auth",
+      "@adonisjs/shield"
     ]
   }
 }

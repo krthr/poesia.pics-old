@@ -23,19 +23,42 @@ export default class ExceptionHandler extends HttpExceptionHandler {
   }
 
   public async handle(error: any, ctx: HttpContextContract): Promise<any> {
-    if (
-      [
-        'E_VALIDATION_FAILURE',
-        'E_IMAGE_CAPTION',
-        'E_IMAGE_NOT_PROCESSED',
-        'E_POEM_GENERATION',
-      ].includes(error.code)
-    ) {
-      console.error(error)
-      ctx.session.flash('error', error.messages?.errors[0]?.message)
-      return ctx.view.render('pages/index')
-    }
+    switch (error.code) {
+      case 'E_IMAGE_CAPTION':
+      case 'E_IMAGE_NOT_PROCESSED':
+      case 'E_POEM_GENERATION': {
+        ctx.session.flash('error', error.message)
+        return ctx.response.redirect('/')
+      }
 
-    return super.handle(error, ctx)
+      case 'E_VALIDATION_FAILURE': {
+        ctx.session.flash('error', error.messages.errors[0].message)
+        return ctx.response.redirect(ctx.request.url())
+      }
+
+      case 'E_INVALID_AUTH_UID': {
+        ctx.session.flash('error', 'Usuario no encontrado')
+        return ctx.response.redirect('/login')
+      }
+
+      case 'E_UNAUTHORIZED_ACCESS': {
+        ctx.session.flash('error', 'Debes iniciar sesión')
+        return ctx.response.redirect('/login')
+      }
+
+      case 'E_INVALID_AUTH_PASSWORD': {
+        ctx.session.flash('error', 'Contraseña inválida')
+        return ctx.response.redirect('/login')
+      }
+
+      case 'E_USER_ALREADY_EXISTS': {
+        ctx.session.flash('error', error.message)
+        return ctx.response.redirect('/join')
+      }
+
+      default: {
+        return super.handle(error, ctx)
+      }
+    }
   }
 }

@@ -1,8 +1,8 @@
 import { Exception } from '@adonisjs/core/build/standalone'
 
-const MESSAGE = 'No se ha podido procesar la imagen. Intenta usando otra.'
-const CODE = 'E_IMAGE_NOT_PROCESSED'
-const STATUS = 422
+const MESSAGE = 'Nombre de usuario ya se encuentra en uso'
+const CODE = 'E_USER_ALREADY_EXISTS'
+const STATUS = 500
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +13,10 @@ const STATUS = 422
 | a status code and error code for every exception.
 |
 | @example
-| new ImageNotProcessedException('message', 500, 'E_RUNTIME_EXCEPTION')
+| new UserAlreadyExistException('message', 500, 'E_RUNTIME_EXCEPTION')
 |
 */
-export default class ImageNotProcessedException extends Exception {
+export default class UserAlreadyExistException extends Exception {
   constructor() {
     super(MESSAGE, STATUS, CODE)
   }

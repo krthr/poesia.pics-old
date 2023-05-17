@@ -1,0 +1,67 @@
+<div class="fixed top-0 w-full bg-base-200/95 z-30" id="topbar">
+  <div class="mx-5 flex h-16 max-w-screen-xl items-center justify-between xl:mx-auto">
+    <div class="flex items-center">
+      <a class="text-lg md:text-2xl" href="/">
+        <span class="inline-flex font-serif">
+          poes <i>í</i> a. </span>
+      </a>
+    </div>
+
+    <div class="items-center flex space-x-3">
+
+      <a href="/explore" class="btn btn-xs md:btn-sm btn-ghost gap-2">
+        Explorar
+        @svg('ph:binoculars', {class: 'w-4 h-4 md:w-5 md:h-5'})
+      </a>
+
+      <div class="dropdown dropdown-bottom dropdown-end">
+        <label tabindex="0" class="btn btn-xs md:btn-sm btn-ghost gap-2">
+
+          @if(auth.isLoggedIn)
+
+          {{`@${auth.user.username}`}}
+          @svg('ph:user', {class:'w-4 h-4 md:w-5 md:h-5'})
+
+          @else
+
+          Mi cuenta
+          @svg('ph:question', {class:'w-4 h-4 md:w-5 md:h-5'})
+
+          @end
+
+        </label>
+
+        <ul tabindex="0" class="dropdown-content menu p-2 mt-1 shadow bg-base-100 rounded-box w-44">
+          @if(auth.isLoggedIn)
+          <li>
+            <a class="justify-between" href="/{{auth.user.username}}">
+              @svg('ph:list', {class: 'w-5 h-5'})
+              Mis poemas
+            </a>
+          </li>
+          <li>
+            <a class="justify-between" href="/logout">
+              @svg('ph:sign-out', {class: 'w-5 h-5'})
+              Salir
+            </a>
+          </li>
+          @else
+          <li>
+            <a class="justify-between" href="/login">
+              Iniciar sesión
+              @svg('ph:sign-in', {class: 'w-5 h-5'})
+            </a>
+          </li>
+          <li>
+            <a class="justify-between" href="/join">
+              Crear cuenta
+              @svg('ph:user-plus', {class: 'w-5 h-5'})
+            </a>
+          </li>
+          @end
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>

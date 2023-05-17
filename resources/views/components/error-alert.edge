@@ -1,0 +1,8 @@
+@if(flashMessages.has('error'))
+<div class="alert alert-error">
+  <div>
+    @svg('ph:x-circle', { class: 'w-6 h-6' })
+    <span>{{ flashMessages.get('error') }}</span>
+  </div>
+</div>
+@end

@@ -1,0 +1,39 @@
+<div class="card w-full outline-slate-200">
+
+  <figure>
+    <a href="/poem/{{poem.id}}">
+      <img class="aspect-square object-cover rounded-lg shadow-lg" src="{{poem.image}}" />
+    </a>
+  </figure>
+
+  <div class="card-body font-serif">
+    <a class="card-title italic text-center line-clamp-2 text-base" href="/poem/{{poem.id}}"
+      target="_blank">{{poem.caption}}</a>
+
+    <p class="text-sm line-clamp-5 my-3">{{poem.poem}}</p>
+
+    <div class="card-actions items-center justify-between">
+      @if(auth.isLoggedIn && auth.user.id === poem.userId)
+      <span class="font-sans">
+        @if(poem.isPublic)
+        @svg('ph:lock-open', {class: 'w-5 h-5'})
+        @else
+        @svg('ph:lock', {class: 'w-5 h-5'})
+        @end
+      </span>
+      @elseif(poem.user)
+      <a class="font-bold font-sans" href="/{{poem.user.username}}">
+        {{ '@' + poem.user.username }}
+      </a>
+      @end
+
+      <div></div>
+
+      <a class="font-sans gap-2 btn btn-outline border-slate-300 btn-sm" href="/poem/{{poem.id}}">
+        Leer más
+        {{-- @svg('ph:arrow-right', { class: 'w-5 h-5' }) --}}
+      </a>
+    </div>
+  </div>
+
+</div>

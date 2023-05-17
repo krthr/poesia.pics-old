@@ -1,13 +1,7 @@
-import { schema, CustomMessages } from '@ioc:Adonis/Core/Validator'
+import { rules, schema, CustomMessages } from '@ioc:Adonis/Core/Validator'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { LOCALES } from 'App/Constants/Locales'
-import { MOODS } from 'App/Constants/Moods'
 
-const extnames = ['jpg', 'jpeg', 'png', 'webp', 'avif'].reduce((arr, ext) => {
-  return [...arr, ext, ext.toUpperCase()]
-}, [])
-
-export default class StorePoemValidator {
+export default class AuthValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   /*
@@ -30,12 +24,13 @@ export default class StorePoemValidator {
    *    ```
    */
   public schema = schema.create({
-    image: schema.file({
-      extnames,
-      size: '10mb',
-    }),
-    mood: schema.enum.optional(MOODS),
-    lang: schema.enum.optional(LOCALES),
+    username: schema.string({ trim: true }, [
+      rules.minLength(3),
+      rules.maxLength(20),
+      rules.alphaNum({ allow: ['dash', 'underscore'] }),
+    ]),
+
+    password: schema.string({}, [rules.minLength(3), rules.maxLength(32)]),
   })
 
   /**
@@ -50,9 +45,12 @@ export default class StorePoemValidator {
    *
    */
   public messages: CustomMessages = {
-    'image.file.extname': 'Tipo de imagen inválido (JPG, PNG, WEBP)',
-    'image.file.size': 'Imagen demasiado grande (máx. 10MB)',
-    'mood.enum': 'Emoción inválida',
-    'lang.enum': 'Idioma no soportado (es, en)',
+    'username.minLength': 'Usuario debe tener mínimo 3 caracteres',
+    'username.maxLength': 'Usuario debe tener máximo 20 caracteres',
+    'username.required': 'Usuario requerido',
+    'username.alphaNum': 'Solo se permiten letras, números y guiones',
+    'password.required': 'Contraseña requerida',
+    'password.minLength': 'Contraseña debe tener mínimo 3 caracteres',
+    'password.maxLength': 'Contraseña debe tener máximo 32 caracteres',
   }
 }

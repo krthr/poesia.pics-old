@@ -1,0 +1,16 @@
+@layout('layouts/main')
+@set('full_width_layout', true)
+@set('topbarSubtitle', {
+  href: `/${user.username}`,
+  text: `<span>Poemas de @${user.username}</span>`
+})
+
+@section('main')
+<div class="w-full">
+  <div class="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    @each(poem in poems)
+    @!component('components/poem-card', {poem})
+    @end
+  </div>
+</div>
+@end

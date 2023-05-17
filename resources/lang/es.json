@@ -19,11 +19,11 @@
     "by_wilson": "por Wilson Tovar"
   },
   "moods": {
-    "default": "Neutral 🤖",
-    "romantic": "Romántico ❤️‍🔥",
-    "erotic": "Erótico 🥵",
-    "melancholic": "Melancólico 😥",
-    "fun": "Divertido 😂"
+    "default": "La IA elige 🤖",
+    "romantic": "Romance ❤️‍🔥",
+    "erotic": "Erotismo 🥵",
+    "melancholic": "Melancolía 😥",
+    "fun": "Diversión 😂"
   },
   "poem": {
     "share_your_poem": "Comparte tu poema usando el hashtag",

@@ -1,31 +1,31 @@
 @layout('layouts/main')
+@set('title', `${poem.caption} - poesia.pics`)
 
 @section('main')
 
-<div class="w-full">
-  <div class="max-w-md" id="poem">
+<div class="max-w-md">
+  <div id="poem">
     {{-- <div class="divider"></div> --}}
 
     <img class="w-full h-auto rounded-md" alt="{{poem.poem}}" src="{{poem.image}}" />
 
-    <p id="caption" class="mb-10 mt-5 text-lg font-serif font-light italic text-center">{{ poem.caption }}</p>
+    <p id="caption" class="mb-10 mt-5 font-serif font-light italic text-center">{{ poem.caption }}</p>
 
-    <p class="whitespace-pre-wrap font-serif my-5 text-lg">{{ poem.poem }}</p>
-
-
-
-
+    <p class="whitespace-pre-wrap font-serif my-5">{{ poem.poem }}</p>
 
     <p class="text-sm inline-flex items-center font-serif">
       {{-- @svg('ph:heart', { class: 'w-5 h-5' }) --}}
       <span class="italic">poesia.pics</span>
-      <span class="mx-2 font-bold text-lg"> ⋅ </span>
-      <span>
-        {{ poem.createdAtLabel }}
-      </span>
+      @svg('ph:dot-outline', {class: 'w-5 h-5 mx-2'})
+      <span>{{ poem.createdAtLabel }}</span>
+
+      @if(poem.user)
+      @svg('ph:dot-outline', {class: 'w-5 h-5 mx-2'})
+      <a class="font-black italic" href="/{{poem.user.username}}">
+        {{'@' + poem.user.username}}
+      </a>
+      @end
     </p>
-
-
 
   </div>
 
@@ -36,6 +36,51 @@
   </ul>
   </p>
 
+
+  @if(auth.isLoggedIn && auth.user.id === poem.userId)
+  <div class="divider"></div>
+
+  <form method="POST" action="/poem/{{poem.id}}?_method=PUT" enctype="application/x-www-form-urlencoded">
+    {{ csrfField() }}
+
+    <input type="hidden" name="is_public" value="{{!poem.isPublic}}">
+
+    @if(poem.isPublic)
+
+    <div class="form-control">
+      <label class="label">
+        <span class="mr-2">Si ocultas el poema solo tú podrás verlo</span>
+
+        <button class="btn btn-sm gap-2 btn-warning" type="submit">
+          Ocultar
+          @svg('ph:eye-closed', {class: 'w-5 h-5'})
+        </button>
+      </label>
+    </div>
+
+    @else
+
+    <div class="form-control">
+      <label class="label">
+        <span class="mr-2">
+          Si publicas el poema otros podrán verlo en <a class="underline" href="/{{auth.user.username}}">tu perfil</a> y
+          en la página de
+          <a class="underline" href="/explore">Explorar</a>
+        </span>
+
+        <button class="btn btn-sm btn-accent gap-2" type="submit">
+          Publicar
+          @svg('ph:eye', {class: 'w-5 h-5'})
+        </button>
+      </label>
+    </div>
+
+
+
+    @end
+  </form>
+  @end
+
   <div class="divider"></div>
 
   <div class="text-center flex flex-col justify-between">
@@ -44,28 +89,27 @@
       <span class="font-bold">#PoesiaPics</span>
     </h2>
 
-    {{--  <div>
-      <a class="btn btn-ghost btn-outline gap-2" id="download-poem" href="/poem/{{poem.id}}/screenshot"
-        download="{{poem.caption}}.jpg">
+    <div>
+      <button class="btn btn-ghost btn-outline gap-2" id="download-poem">
         @svg('ph:download', { class: 'w-5 h-5' })
         {{ t('poem.download_poem') }}
-      </a>
-    </div>  --}}
+      </button>
+    </div>
   </div>
 </div>
+
 @end
 
 @section('scripts')
 <script>
-  /** @type {HTMLAnchorElement} */
-  const downloadBtn = document.querySelector('#download-poem')
+  window.poem = {{{
 
-  downloadBtn.onclick = () => {
-    downloadBtn.classList.add('loading')
+    JSON.stringify({
+      caption: poem.caption
+    })
 
-    setTimeout(() => {
-      downloadBtn.classList.remove('loading')
-    }, 5000)
-  }
+  }}}
 </script>
+
+@entryPointScripts('poem')
 @end

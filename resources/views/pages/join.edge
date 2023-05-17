@@ -1,0 +1,28 @@
+@layout('layouts/main')
+@set('full_width_layout', true)
+
+@section('main')
+<div class="flex items-center justify-center w-full">
+
+  <div class="card shadow-2xl border w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
+    <div class="card-body">
+      <h1 class="card-title mb-4">
+        Crear nueva cuenta
+      </h1>
+
+      @!component('components/error-alert')
+
+      @!component('components/auth/form', {action: '/join', btnText: 'Crear nueva cuenta'})
+
+      <div class="divider">
+        ¿Ya tienes cuenta?
+      </div>
+
+      <a href="/login" class="btn btn-secondary">
+        Iniciar sesión
+      </a>
+    </div>
+  </div>
+
+</div>
+@end
