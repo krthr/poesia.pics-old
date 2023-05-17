@@ -7,21 +7,13 @@
   </figure>
 
   <div class="card-body font-serif">
-    <a class="card-title italic text-center line-clamp-2 text-base" href="/poem/{{poem.id}}"
+    <a class="card-title italic text-center line-clamp-2 text-base h-12" href="/poem/{{poem.id}}"
       target="_blank">{{poem.caption}}</a>
 
     <p class="text-sm line-clamp-5 my-3">{{poem.poem}}</p>
 
     <div class="card-actions items-center justify-between">
-      @if(auth.isLoggedIn && auth.user.id === poem.userId)
-      <span class="font-sans">
-        @if(poem.isPublic)
-        @svg('ph:lock-open', {class: 'w-5 h-5'})
-        @else
-        @svg('ph:lock', {class: 'w-5 h-5'})
-        @end
-      </span>
-      @elseif(poem.user)
+      @if(poem.user)
       <a class="font-bold font-sans" href="/{{poem.user.username}}">
         {{ '@' + poem.user.username }}
       </a>

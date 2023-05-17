@@ -75,13 +75,18 @@ export default class PoemsController {
       query.andWhere('is_public', true)
     }
 
-    const poems = await query.preload('user').paginate(page, 50)
+    const poems = await query.preload('user').orderBy('created_at', 'desc').paginate(page, 50)
     return view.render('pages/user', { poems, user })
   }
 
   public async explore({ request, view }: HttpContextContract) {
     const page = request.input('page', 1)
-    const poems = await Poem.query().where('is_public', true).preload('user').paginate(page, 30)
+    const poems = await Poem.query()
+      .where('is_public', true)
+      .preload('user')
+      .orderBy('created_at', 'desc')
+      .paginate(page, 30)
+
     return view.render('pages/explore', { poems })
   }
 }
