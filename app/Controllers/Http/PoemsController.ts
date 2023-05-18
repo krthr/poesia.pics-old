@@ -75,7 +75,10 @@ export default class PoemsController {
       query.andWhere('is_public', true)
     }
 
-    const poems = await query.preload('user').orderBy('created_at', 'desc').paginate(page, 50)
+    const poems = await query.preload('user').orderBy('created_at', 'desc').paginate(page, 20)
+
+    poems.baseUrl(`/${username}`)
+
     return view.render('pages/user', { poems, user })
   }
 
@@ -85,7 +88,9 @@ export default class PoemsController {
       .where('is_public', true)
       .preload('user')
       .orderBy('created_at', 'desc')
-      .paginate(page, 30)
+      .paginate(page, 20)
+
+    poems.baseUrl('/explore')
 
     return view.render('pages/explore', { poems })
   }

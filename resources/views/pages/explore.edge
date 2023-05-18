@@ -6,7 +6,7 @@
 @section('main')
 <div class="w-full">
 
-  <div class="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+  <div class="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="grid">
     @each(poem in poems)
     @!component('components/poem-card', {poem})
     @end
@@ -14,9 +14,9 @@
 
   <div class="mt-10 justify-center flex">
     <div class="btn-group">
-      <a class="btn" disabled="{{ poems.meta }}">«</a>
+      <a class="btn" {{ !poems.getPreviousPageUrl() && 'disabled' }} href="{{ poems.getPreviousPageUrl() }}">«</a>
       <span class="btn">Página {{poems.currentPage}}</span>
-      <a class="btn" disables="{{ JSON.stringify(poems.meta) }}">»</a>
+      <a class="btn" {{ !poems.getNextPageUrl() && 'disabled' }} href="{{ poems.getNextPageUrl() }}">»</a>
     </div>
   </div>
 </div>
