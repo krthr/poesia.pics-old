@@ -52,7 +52,7 @@ export default class ExceptionHandler extends HttpExceptionHandler {
       }
 
       case 'E_USER_ALREADY_EXISTS': {
-        ctx.session.flash('error', error.message)
+        ctx.session.flash('error', 'El usuario ya se encuentra en uso.')
         return ctx.response.redirect('/join')
       }
 

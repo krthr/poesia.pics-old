@@ -8,14 +8,14 @@
     </div>
 
     <div class="items-center flex space-x-3">
-
-      <a href="/explore" class="btn btn-xs md:btn-sm btn-ghost gap-2">
+      <a href="/explore" class="btn btn-xs md:btn-sm btn-ghost gap-2 {{ currentPage === 'explore' && 'btn-outline' }}">
         Explorar
         @svg('ph:binoculars', {class: 'w-4 h-4 md:w-5 md:h-5'})
       </a>
 
       <div class="dropdown dropdown-bottom dropdown-end">
-        <label tabindex="0" class="btn btn-xs md:btn-sm btn-ghost gap-2">
+        <label tabindex="0"
+          class="btn btn-xs md:btn-sm btn-ghost gap-2 {{ auth.isLoggedIn && currentPage === `/${auth.user.username}` && 'btn-outline' }}">
 
           @if(auth.isLoggedIn)
 

@@ -21,12 +21,13 @@ const LANGS: Record<Locale, string> = {
   en: 'English',
 } as const
 
-export async function generatePoem(imagePath: string, lang: Locale = 'es', mood: Mood = 'default') {
+export async function generatePoem(imagePath: string, mood: Mood = 'default') {
   const buff = await readFile(imagePath)
 
   const processedImage = await processImage(buff)
   const caption = await getImageCaption(processedImage.base64)
 
+  const lang: Locale = 'es'
   const author = getRandomAuthors(lang, mood).join(', ')
 
   const promp = [

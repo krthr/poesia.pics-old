@@ -1,7 +1,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import AuthValidator from 'App/Validators/AuthValidator'
-import { Exception } from '@adonisjs/core/build/standalone'
 import User from 'App/Models/User'
+import UserAlreadyExistException from 'App/Exceptions/UserAlreadyExistException'
 
 export default class AuthController {
   public async join({ auth, request, response, session, view }: HttpContextContract) {
@@ -20,7 +20,7 @@ export default class AuthController {
 
     const alreadyExists = await User.findBy('username', username)
     if (alreadyExists) {
-      throw new Exception('El usuario ya existe.', 300, 'E_USER_ALREADY_EXISTS')
+      throw new UserAlreadyExistException()
     }
 
     const user = await User.create({ username, password })

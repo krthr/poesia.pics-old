@@ -30,8 +30,8 @@
         </div>
 
         <select class="select select-bordered w-full" name="mood" id="mood">
-          @each(mood in MOODS_ICONS)
-          <option value="{{mood.key}}">{{ t(`moods.${mood.key}`) }}</option>
+          @each(mood in MOODS)
+          <option value="{{mood}}">{{ MOODS_DICT[mood].label }}</option>
           @end
         </select>
       </div>

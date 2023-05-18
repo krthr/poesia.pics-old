@@ -13,7 +13,7 @@ export default class PoemsController {
 
   public async store({ auth, request, response }: HttpContextContract) {
     const body = await request.validate(StorePoemValidator)
-    const generatedPoem = await generatePoem(body.image.tmpPath!, body.lang, body.mood)
+    const generatedPoem = await generatePoem(body.image.tmpPath!, body.mood)
     const newPoem = await Poem.create({
       userId: auth.user?.id,
       ...generatedPoem,

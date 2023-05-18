@@ -1,6 +1,5 @@
 import { schema, CustomMessages } from '@ioc:Adonis/Core/Validator'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { LOCALES } from 'App/Constants/Locales'
 import { MOODS } from 'App/Constants/Moods'
 
 const extnames = ['jpg', 'jpeg', 'png', 'webp', 'avif'].reduce((arr, ext) => {
@@ -35,7 +34,6 @@ export default class StorePoemValidator {
       size: '10mb',
     }),
     mood: schema.enum.optional(MOODS),
-    lang: schema.enum.optional(LOCALES),
   })
 
   /**
@@ -53,6 +51,5 @@ export default class StorePoemValidator {
     'image.file.extname': 'Tipo de imagen inválido (JPG, PNG, WEBP)',
     'image.file.size': 'Imagen demasiado grande (máx. 10MB)',
     'mood.enum': 'Emoción inválida',
-    'lang.enum': 'Idioma no soportado (es, en)',
   }
 }

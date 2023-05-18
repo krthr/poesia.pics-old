@@ -1,9 +1,6 @@
 @layout('layouts/main')
-@set('full_width_layout', true)
-@set('topbarSubtitle', {
-  href: `/${user.username}`,
-  text: `<span>Poemas de @${user.username}</span>`
-})
+@set('fullWidthLayout', true)
+@set('currentPage', `/${user.username}`)
 
 @section('main')
 <div class="w-full">

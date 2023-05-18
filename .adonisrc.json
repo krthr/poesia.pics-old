@@ -23,7 +23,6 @@
     "@adonisjs/core",
     "@adonisjs/view",
     "@adonisjs/lucid",
-    "@adonisjs/i18n",
     "@adonisjs/session",
     "@adonisjs/auth",
     "@adonisjs/shield"
@@ -49,7 +48,6 @@
     {
       "pattern": "resources/views/**/*.edge",
       "reloadServer": false
-    },
-    "resources/lang/**/*.(json|yaml)"
+    }
   ]
 }

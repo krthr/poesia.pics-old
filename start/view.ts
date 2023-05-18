@@ -1,9 +1,10 @@
 import View from '@ioc:Adonis/Core/View'
 import { addCollection, edgeIconify } from 'edge-iconify'
 import { icons } from '@iconify-json/ph'
-import { MOODS_ICONS } from 'App/Constants/Moods'
+import { MOODS_DICT, MOODS } from 'App/Constants/Moods'
 
 addCollection(icons)
 View.use(edgeIconify)
 
-View.global('MOODS_ICONS', MOODS_ICONS)
+View.global('MOODS', MOODS)
+View.global('MOODS_DICT', MOODS_DICT)

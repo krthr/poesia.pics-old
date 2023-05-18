@@ -35,7 +35,6 @@
       "@japa/preset-adonis/build/adonis-typings",
       "@adonisjs/view",
       "@adonisjs/lucid",
-      "@adonisjs/i18n",
       "@adonisjs/session",
       "@adonisjs/auth",
       "@adonisjs/shield"
