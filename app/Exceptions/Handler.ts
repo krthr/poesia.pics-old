@@ -22,7 +22,7 @@ export default class ExceptionHandler extends HttpExceptionHandler {
     super(Logger)
   }
 
-  public async handle(error: any, ctx: HttpContextContract): Promise<any> {
+  public async handle(error: any, ctx: HttpContextContract) {
     switch (error.code) {
       case 'E_IMAGE_CAPTION':
       case 'E_IMAGE_NOT_PROCESSED':
@@ -32,12 +32,21 @@ export default class ExceptionHandler extends HttpExceptionHandler {
       }
 
       case 'E_VALIDATION_FAILURE': {
-        ctx.session.flash('error', error.messages.errors[0].message)
+        let message = error.messages
+
+        for (const key of ['username', 'password', 'image', 'mood']) {
+          if (key in error.messages) {
+            message = error.messages[key][0]
+            break
+          }
+        }
+
+        ctx.session.flash('error', message)
         return ctx.response.redirect(ctx.request.url())
       }
 
       case 'E_INVALID_AUTH_UID': {
-        ctx.session.flash('error', 'Usuario no encontrado')
+        ctx.session.flash('error', 'Nombre de usuario inválido.')
         return ctx.response.redirect('/login')
       }
 
@@ -54,6 +63,16 @@ export default class ExceptionHandler extends HttpExceptionHandler {
       case 'E_USER_ALREADY_EXISTS': {
         ctx.session.flash('error', 'El usuario ya se encuentra en uso.')
         return ctx.response.redirect('/join')
+      }
+
+      case 'E_TOO_MANY_REQUESTS': {
+        ctx.session.flash('error', error.rawMessage || error.message)
+        return ctx.response.redirect(ctx.request.url())
+      }
+
+      case 'E_BAD_CSRF_TOKEN': {
+        ctx.session.flash('error', 'Token CSRF inválido')
+        return ctx.response.redirect(ctx.request.url())
       }
 
       default: {

@@ -37,7 +37,8 @@
       "@adonisjs/lucid",
       "@adonisjs/session",
       "@adonisjs/auth",
-      "@adonisjs/shield"
+      "@adonisjs/shield",
+      "@adonisjs/limiter"
     ]
   }
 }

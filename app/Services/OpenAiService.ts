@@ -42,6 +42,6 @@ export async function createCompletion(prompt: string, options: Options = {}) {
     return poem
   } catch (error) {
     Logger.error(error)
-    throw new PoemGenerationException()
+    throw new PoemGenerationException('E_POEM_GENERATION')
   }
 }

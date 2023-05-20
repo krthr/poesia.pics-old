@@ -1,6 +1,6 @@
 import Logger from '@ioc:Adonis/Core/Logger'
 
-import ImageNotProcessedException from 'App/Exceptions/ImageNotProcessedException'
+import PoemGenerationException from 'App/Exceptions/PoemGenerationException'
 import Sharp from 'sharp'
 // import NodeVibrant from 'node-vibrant'
 
@@ -15,6 +15,6 @@ export async function processImage(imgBuffer: Buffer) {
     return { base64, buffer }
   } catch (error) {
     Logger.error(error)
-    throw new ImageNotProcessedException()
+    throw new PoemGenerationException('E_IMAGE_NOT_PROCESSED')
   }
 }

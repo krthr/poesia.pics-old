@@ -21,7 +21,7 @@
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.get('/', 'PoemsController.index')
-Route.post('/', 'PoemsController.store')
+Route.post('/', 'PoemsController.store').middleware('throttle:generate_poem')
 Route.get('/poem/:id', 'PoemsController.show')
 Route.get('/explore', 'PoemsController.explore')
 

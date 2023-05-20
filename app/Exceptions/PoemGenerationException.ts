@@ -1,8 +1,24 @@
 import { Exception } from '@adonisjs/core/build/standalone'
 
-const MESSAGE = 'No se pudo generar el poema. Inténtalo más tarde.'
-const CODE = 'E_POEM_GENERATION'
-const STATUS = 500
+const CODES = ['E_IMAGE_CAPTION', 'E_IMAGE_NOT_PROCESSED', 'E_POEM_GENERATION'] as const
+type Code = (typeof CODES)[number]
+
+const ERRORS: Record<Code, { message: string; status: number }> = {
+  E_IMAGE_CAPTION: {
+    message: 'No se ha podido obtener una descripción de la imagen. Intenta usando otra.',
+    status: 422,
+  },
+
+  E_IMAGE_NOT_PROCESSED: {
+    message: 'No se ha podido procesar la imagen. Intenta usando otra.',
+    status: 422,
+  },
+
+  E_POEM_GENERATION: {
+    message: 'No se pudo generar el poema. Inténtalo más tarde.',
+    status: 500,
+  },
+} as const
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +33,11 @@ const STATUS = 500
 |
 */
 export default class PoemGenerationException extends Exception {
-  constructor() {
-    super(MESSAGE, STATUS, CODE)
+  public rawMessage: string
+
+  constructor(code: Code) {
+    const message = ERRORS[code].message
+    super(message, ERRORS[code].status, code)
+    this.rawMessage = message
   }
 }

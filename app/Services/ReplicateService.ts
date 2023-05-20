@@ -1,6 +1,6 @@
 import Env from '@ioc:Adonis/Core/Env'
 import Logger from '@ioc:Adonis/Core/Logger'
-import ImageCaptionException from 'App/Exceptions/ImageCaptionException'
+import PoemGenerationException from 'App/Exceptions/PoemGenerationException'
 import Replicate from 'replicate'
 
 const replicate = new Replicate({
@@ -28,6 +28,6 @@ export async function getImageCaption(image: string) {
     return caption
   } catch (error) {
     Logger.error(error)
-    throw new ImageCaptionException()
+    throw new PoemGenerationException('E_IMAGE_CAPTION')
   }
 }

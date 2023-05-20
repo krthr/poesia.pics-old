@@ -2,7 +2,7 @@ import { Exception } from '@adonisjs/core/build/standalone'
 
 const MESSAGE = 'Nombre de usuario ya se encuentra en uso'
 const CODE = 'E_USER_ALREADY_EXISTS'
-const STATUS = 500
+const STATUS = 409
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +17,8 @@ const STATUS = 500
 |
 */
 export default class UserAlreadyExistException extends Exception {
+  public rawMessage = MESSAGE
+
   constructor() {
     super(MESSAGE, STATUS, CODE)
   }

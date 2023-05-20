@@ -48,6 +48,7 @@ export default class StorePoemValidator {
    *
    */
   public messages: CustomMessages = {
+    'image.required': 'Imagen no enviada',
     'image.file.extname': 'Tipo de imagen inválido (JPG, PNG, WEBP)',
     'image.file.size': 'Imagen demasiado grande (máx. 10MB)',
     'mood.enum': 'Emoción inválida',
