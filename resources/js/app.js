@@ -17,6 +17,9 @@ window.onload = () => {
       selectImageBtn.setAttribute('disabled', true)
       selectImageBtn.classList.add('loading')
 
+      window.gtag && window.gtag('event', 'generate_poem')
+      window.LogRocket && window.LogRocket.track('generate_poem')
+
       form.submit()
     }
   }
