@@ -30,6 +30,10 @@ export default class PoemsController {
       return response.redirect('/')
     }
 
+    if (auth.user?.isAdmin) {
+      return view.render('pages/poem', { poem })
+    }
+
     if (!poem.isPublic && poem.user?.id !== auth.user?.id) {
       return response.redirect('/')
     }
@@ -71,7 +75,7 @@ export default class PoemsController {
 
     const query = Poem.query().where('user_id', user.id)
 
-    if (user.id !== auth.user?.id) {
+    if (user.id !== auth.user?.id && !auth.user?.isAdmin) {
       query.andWhere('is_public', true)
     }
 
@@ -82,14 +86,16 @@ export default class PoemsController {
     return view.render('pages/user', { poems, user })
   }
 
-  public async explore({ request, view }: HttpContextContract) {
+  public async explore({ auth, request, view }: HttpContextContract) {
     const page = request.input('page', 1)
-    const poems = await Poem.query()
-      .where('is_public', true)
-      .preload('user')
-      .orderBy('created_at', 'desc')
-      .paginate(page, 20)
 
+    let query = Poem.query().preload('user').orderBy('created_at', 'desc')
+
+    if (!auth.user?.isAdmin) {
+      query = query.where('is_public', true)
+    }
+
+    const poems = await query.paginate(page, 20)
     poems.baseUrl('/explore')
 
     return view.render('pages/explore', { poems })

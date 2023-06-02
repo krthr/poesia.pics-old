@@ -7,6 +7,9 @@ export default class User extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
+  @column()
+  public isAdmin = false
+
   @hasMany(() => Poem)
   public poems: HasMany<typeof Poem>
 
