@@ -18,3 +18,8 @@ export async function processImage(imgBuffer: Buffer) {
     throw new PoemGenerationException('E_IMAGE_NOT_PROCESSED')
   }
 }
+
+export function encodedImageToBuff(image: String) {
+  image = image.replace('data:image/jpeg;base64,', '')
+  return Buffer.from(image, 'base64')
+}
