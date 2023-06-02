@@ -2,7 +2,7 @@
 
 @set('title', `${poem.caption} - poesia.pics`)
 @set('description', poem.poem.slice(0, 160) + '...')
-@set('image', request.completeUrl() + '/image')
+@set('image', `https://poesia.pics/poem/${poem.id}/image`)
 
 @section('main')
 
