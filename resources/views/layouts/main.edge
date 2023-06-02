@@ -1,18 +1,3 @@
-@set('headMeta', [
-  {
-    names: ['og:title'],
-    content: 'poesía.pics - Una foto, un poema'
-  },
-  {
-    names: ['description', 'og:description'],
-    content: 'Convierte tus fotografías en poemas usando Inteligencia Artifical.'
-  },
-  {
-    names: ['og:image'],
-    content: 'https://poesia.pics/icon.png'
-  }
-])
-
 <!DOCTYPE html>
 <html lang="es" data-theme="pastel">
 
@@ -23,6 +8,7 @@
   <meta name="apple-mobile-web-app-title" content="poesía.pics - Una foto, un poema">
   <meta name="theme-color" content="#dd2d44">
   <title>{{ title }} - poesia.pics</title>
+  <meta property="og:image" content="{{title}} - poesia.pics">
 
   <link rel="icon" href="/icons/64x64.aa5b2829.png" data-h-2c9d455="">
   <link rel="apple-touch-icon" href="/icons/512x512.maskable.aa5b2829.png" sizes="512x512" data-h-bc1de16="">
@@ -30,17 +16,30 @@
   <link crossorigin="anonymous" rel="stylesheet" type="text/css" href="{{ asset('assets/app.css') }}">
 
   <link rel="manifest" href="/manifest.json">
+  <link rel='canonical' href="{{ request.completeUrl() }}" />
+
   <meta property="og:site_name" content="poesia.pics">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es">
 
-  @each(tag in headMeta)
-  @each(name in tag.names)
-  <meta property="{{name}}" content="{{tag.content}}">
-  @end
+  @if(description)
+  <meta name="description" content="{{description}}">
+  <meta property="og:description" content="{{description}}">
+  @else
+  <meta name="description" content="poesía.pics - Una foto, un poema">
+  <meta property="og:description" content="poesía.pics - Una foto, un poema">
   @end
 
-  <meta name="og:url" content="{{ request.completeUrl() }}" >
+  @if(image)
+  <meta property="og:image" content="{{image}}">
+  @else
+  <meta property="og:image" content="https://poesia.pics/icon.png">
+  @end
+
+  <meta property="og:title" content="{{title}}">
+
+
+  <meta name="og:url" content="{{ request.completeUrl() }}">
   <meta name="twitter:card" content="summary_large_image">
 
   @if(auth.user)
