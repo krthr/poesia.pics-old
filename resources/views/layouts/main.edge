@@ -1,3 +1,18 @@
+@set('headMeta', [
+  {
+    names: ['og:title'],
+    content: 'poesía.pics - Una foto, un poema'
+  },
+  {
+    names: ['description', 'og:description'],
+    content: 'Convierte tus fotografías en poemas usando Inteligencia Artifical.'
+  },
+  {
+    names: ['og:image'],
+    content: 'https://poesia.pics/icon.png'
+  }
+])
+
 <!DOCTYPE html>
 <html lang="es" data-theme="pastel">
 
@@ -18,10 +33,14 @@
   <meta property="og:site_name" content="poesia.pics">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es">
-  <meta property="og:title" content="poesía.pics - Una foto, un poema">
-  <meta name="description" content="Convierte tus fotografías en poemas usando Inteligencia Artifical.">
-  <meta property="og:description" content="Convierte tus fotografías en poemas usando Inteligencia Artifical.">
-  <meta property="og:image" content="https://poesia.pics/icon.png">
+
+  @each(tag in headMeta)
+  @each(name in tag.names)
+  <meta property="{{name}}" content="{{tag.content}}">
+  @end
+  @end
+
+  <meta name="og:url" content="{{ request.completeUrl() }}" >
   <meta name="twitter:card" content="summary_large_image">
 
   @if(auth.user)
