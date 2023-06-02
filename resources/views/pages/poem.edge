@@ -2,7 +2,7 @@
 
 @set('title', `${poem.caption} - poesia.pics`)
 @set('description', poem.poem.slice(0, 160) + '...')
-@set('image', poem.image)
+@set('image', request.completeUrl() + '/image')
 
 @section('main')
 
@@ -10,7 +10,8 @@
   <div id="poem">
     {{-- <div class="divider"></div> --}}
 
-    <img class="w-full h-auto rounded-md" alt="{{poem.poem}}" loading="lazy" src="{{poem.image}}" width="100%" height="auto" />
+    <img class="w-full h-auto rounded-md" alt="{{poem.poem}}" loading="lazy" src="{{poem.image}}" width="100%"
+      height="auto" />
 
     <h1 id="caption" class="mb-10 mt-5 font-serif font-light italic text-center">{{ poem.caption }}</h1>
 
