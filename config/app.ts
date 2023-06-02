@@ -77,7 +77,7 @@ export const http: ServerConfig = {
   | headers.
   |
   */
-  trustProxy: proxyAddr.compile('loopback'),
+  trustProxy: proxyAddr.compile(['linklocal', 'uniquelocal', 'loopback']),
 
   /*
   |--------------------------------------------------------------------------

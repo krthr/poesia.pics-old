@@ -2,7 +2,7 @@
 
 @set('title', `${poem.caption} - poesia.pics`)
 @set('description', poem.poem.slice(0, 160) + '...')
-@set('image', `https://poesia.pics/poem/${poem.id}/image`)
+@set('image', request.completeUrl() + '/image')
 
 @section('main')
 
@@ -86,6 +86,13 @@
   @end
 
   <div class="divider"></div>
+
+  <div>
+    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large"
+      data-url="https://poesia.pics" data-hashtags="poesiapics" data-related="" data-lang="es"
+      data-show-count="false">Tweet</a>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  </div>
 
   <div class="text-center flex flex-col justify-between">
     <h2 class="text-2xl mb-6">
