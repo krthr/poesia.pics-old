@@ -5,7 +5,6 @@ import { generatePoem } from 'App/Services/PoemsService'
 import { schema } from '@ioc:Adonis/Core/Validator'
 
 import User from 'App/Models/User'
-import { encodedImageToBuff } from 'App/Services/ImageService'
 
 export default class PoemsController {
   public async index({ view }: HttpContextContract) {
@@ -27,20 +26,16 @@ export default class PoemsController {
     const id = request.param('id')
     const poem = await Poem.query()
       .where('id', id)
-      .select(['id', 'image', 'is_public', 'user_id'])
+      .select(['id', 'is_public', 'user_id', 'photo'])
       .first()
 
     if (!poem) {
       return
     }
 
-    if (!poem.isPublic && poem.userId) {
-      return
-    }
-
-    const buff = encodedImageToBuff(poem.image)
     response.header('Content-Type', 'image/jpeg')
-    return response.send(buff)
+    response.header('Cache-Control', 'public, max-age=15552000')
+    return response.send(poem.photo)
   }
 
   public async show({ auth, request, response, view }: HttpContextContract) {

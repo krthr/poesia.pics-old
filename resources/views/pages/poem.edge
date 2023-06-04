@@ -10,7 +10,7 @@
   <div id="poem">
     {{-- <div class="divider"></div> --}}
 
-    <img class="w-full h-auto rounded-md" alt="{{poem.poem}}" loading="lazy" src="{{poem.image}}" width="100%"
+    <img class="w-full h-auto rounded-md lazyload" alt="{{poem.caption}}" data-src="{{poem.photoPath}}" src="{{poem.photoPreview}}" width="100%"
       height="auto" />
 
     <h1 id="caption" class="mb-10 mt-5 font-serif font-light italic text-center">{{ poem.caption }}</h1>
@@ -116,4 +116,5 @@
 </script>
 
 @entryPointScripts('poem')
+
 @end

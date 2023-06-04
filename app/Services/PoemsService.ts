@@ -47,7 +47,8 @@ export async function generatePoem(imagePath: string, mood: Mood = 'default') {
   return {
     author,
     caption,
-    image: processedImage.base64,
+    photo: processedImage.buffer,
+    photoPreview: processedImage.preview,
     mood,
     poem,
     promp,

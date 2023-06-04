@@ -32,10 +32,13 @@ export default class Poem extends BaseModel {
   public caption: string
 
   @column()
-  public image: string
+  public mood: string
 
   @column()
-  public mood: string
+  public photo: Buffer
+
+  @column()
+  public photoPreview: string
 
   @column()
   public poem: string
@@ -61,5 +64,10 @@ export default class Poem extends BaseModel {
   @beforeCreate()
   public static createId(poem: Poem) {
     poem.id = nanoid(21)
+  }
+
+  @computed()
+  public get photoPath() {
+    return `/poem/${this.id}/image`
   }
 }

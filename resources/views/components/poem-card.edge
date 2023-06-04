@@ -1,8 +1,8 @@
 <div class="card w-full outline-slate-200">
 
   <figure>
-    <a href="/poem/{{poem.id}}">
-      <img class="aspect-square object-cover rounded-lg shadow-lg" src="{{poem.image}}" loading="lazy" width="100%" height="auto" />
+    <a class="w-full" href="/poem/{{poem.id}}">
+      <img class="aspect-square object-cover rounded-lg shadow-lg w-full h-auto lazyload" data-src="{{poem.photoPath}}" src="{{poem.photoPreview}}" width="100%" height="auto" />
     </a>
   </figure>
 
