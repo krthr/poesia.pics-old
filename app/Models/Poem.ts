@@ -38,7 +38,7 @@ export default class Poem extends BaseModel {
   public photo: Buffer
 
   @column()
-  public photoPreview: string
+  public photoPreview?: string
 
   @column()
   public poem: string
@@ -68,6 +68,6 @@ export default class Poem extends BaseModel {
 
   @computed()
   public get photoPath() {
-    return `/poem/${this.id}/image`
+    return `/images/poems/${this.id}.jpg`
   }
 }

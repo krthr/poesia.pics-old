@@ -25,7 +25,7 @@ Route.post('/', 'PoemsController.store').middleware('throttle:generate_poem')
 Route.get('/poem/:id', 'PoemsController.show')
 Route.get('/explore', 'PoemsController.explore')
 
-Route.get('/poem/:id/image', 'PoemsController.image')
+Route.get('/images/poems/:id.jpg', 'PoemsController.image')
 
 Route.group(() => {
   Route.put('/poem/:id', 'PoemsController.update')
